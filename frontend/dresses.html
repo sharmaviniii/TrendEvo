@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dresses Collection</title>
+
+<style>
+:root{
+    --bg-page: radial-gradient(circle at top left, #1b2435 0%, #050712 55%, #020309 100%);
+    --card-bg: #0b0f1a;
+    --sidebar-bg: #050812;
+    --accent: #f3c46b;
+    --accent-soft: #f7d58e;
+    --muted: #9ca3b9;
+    --border-subtle: #1f2937;
+    --radius-lg: 18px;
+    --shadow-soft: 0 22px 60px rgba(0,0,0,0.8);
+    --pill-bg: #151827;
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:'Poppins', sans-serif;
+}
+
+body{
+    background:var(--bg-page);
+    color:#f9fafb;
+    min-height:100vh;
+}
+
+/* MAIN LAYOUT */
+.container{
+    display:flex;
+    width:100%;
+    padding:26px 32px;
+    gap:28px;
+}
+
+/* SIDEBAR */
+.sidebar{
+    width:270px;
+    background:var(--sidebar-bg);
+    padding:40px 40px 50px;
+    border-radius:var(--radius-lg);
+    box-shadow:var(--shadow-soft);
+    border:1px solid #111827;
+    position:sticky;
+    top:80px;
+    align-self:flex-start;
+}
+
+.sidebar h2{
+    font-size:18px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:#f9fafb;
+    margin-bottom:14px;
+}
+
+.filter-section{
+    margin-bottom:18px;
+    padding-bottom:16px;
+    border-bottom:1px solid #111827;
+}
+
+.filter-section:last-of-type{
+    border-bottom:none;
+    padding-bottom:0;
+}
+
+.filter-title{
+    font-size:13px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent-soft);
+    margin-bottom:10px;
+}
+
+.sidebar label{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin:5px 0;
+    font-size:13px;
+    color:var(--muted);
+    padding:6px 8px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:0.18s ease;
+}
+
+.sidebar label:hover{
+    background:#0f172a;
+    color:#e5e7eb;
+}
+
+/* Checkbox styling */
+.sidebar input[type="checkbox"]{
+    width:15px;
+    height:15px;
+    accent-color:var(--accent);
+    cursor:pointer;
+}
+
+/* RIGHT SIDE */
+.grid{
+    flex:1;
+}
+
+/* HEADER ROW */
+.grid-title{
+    font-size:26px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    margin-bottom:6px;
+}
+
+.grid-subtitle{
+    font-size:13px;
+    color:var(--muted);
+    margin-bottom:18px;
+}
+
+.sort-row{
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    margin-bottom:20px;
+    gap:8px;
+    font-size:13px;
+    color:var(--muted);
+}
+
+.sort-row select{
+    background:#050712;
+    padding:9px 14px;
+    border-radius:999px;
+    color:#f9fafb;
+    border:1px solid #111827;
+    font-size:13px;
+    outline:none;
+}
+
+/* PRODUCT GRID */
+.products{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+/* PRODUCT CARD */
+.card{
+    background:radial-gradient(circle at top left,#141827,#050712);
+    padding:14px;
+    border-radius:var(--radius-lg);
+    transition:transform .22s ease, box-shadow .22s ease, border-color .2s;
+    box-shadow:0 18px 40px rgba(0,0,0,0.8);
+    border:1px solid #111827;
+    position:relative;
+    overflow:hidden;
+    object-fit: contain;
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    inset:-40%;
+    background:radial-gradient(circle at top,#f3c46b22,transparent 55%);
+    opacity:0;
+    transition:opacity .25s ease;
+}
+
+.card:hover::before{ opacity:1; }
+
+.card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 26px 60px rgba(0,0,0,0.95);
+    border-color:#f3c46b55;
+}
+
+.card img{
+    width:100%;
+    height:320px;
+    object-fit:cover;
+    border-radius:14px;
+    display:block;
+}
+
+/* Card text */
+.card-name{
+    font-size:15px;
+    margin-top:10px;
+    font-weight:500;
+}
+
+.card-price{
+    font-size:14px;
+    opacity:0.85;
+    margin-top:2px;
+}
+
+/* VIEW BUTTON */
+.view-btn{
+    margin-top:10px;
+    background:var(--accent);
+    border:none;
+    padding:9px 14px;
+    border-radius:999px;
+    cursor:pointer;
+    color:#111827;
+    width:100%;
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:.03em;
+    transition:.18s ease;
+    box-shadow:0 10px 26px rgba(0,0,0,0.75);
+}
+
+.view-btn:hover{
+    background:var(--accent-soft);
+    transform:translateY(-1px);
+}
+
+/* RESPONSIVE */
+@media (max-width:1024px){
+    .container{flex-direction:column;}
+    .sidebar{width:100%;position:static;}
+    .products{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:640px){
+    .container{padding:20px;}
+    .products{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+        <a href="shop.html" style="
+  position: fixed;
+  top: 35px;
+  left: 30px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background:#050712;
+  color:#f9fafb;
+  text-decoration:none;
+  font-size:13px;
+  border:1px solid #374151;
+">
+  ← Back to Home
+</a>
+
+<!-- MAIN CONTAINER -->
+<div class="container">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <h2>FILTERS</h2>
+
+        <div class="filter-section">
+            <div class="filter-title">SIZE</div>
+            <label><input type="checkbox"> XS</label>
+            <label><input type="checkbox"> S</label>
+            <label><input type="checkbox"> M</label>
+            <label><input type="checkbox"> L</label>
+            <label><input type="checkbox"> XL</label>
+        </div>
+
+        <div class="filter-section">
+            <div class="filter-title">COLOR</div>
+            <label><input type="checkbox"> Black</label>
+            <label><input type="checkbox"> Red</label>
+            <label><input type="checkbox"> White</label>
+            <label><input type="checkbox"> Beige</label>
+            <label><input type="checkbox"> Pink</label>
+        </div>
+
+        <div class="filter-section">
+            <div class="filter-title">PRICE</div>
+            <label><input type="checkbox"> ₹799 – ₹1199</label>
+            <label><input type="checkbox"> ₹1199 – ₹1599</label>
+            <label><input type="checkbox"> ₹1599 – ₹1999</label>
+        </div>
+    </div>
+
+    <!-- PRODUCT GRID -->
+    <div class="grid">
+
+        <h1 class="grid-title">DRESSES COLLECTION</h1>
+        <p class="grid-subtitle">Curated mix of men’s & women’s occasion wear – sorted by comfort, fit & vibe.</p>
+
+        <div class="sort-row">
+            <span>Sort:</span>
+            <select id="sortSelect" onchange="sortProducts()">
+                <option value="">Recommended</option>
+                <option value="low">Price: Low → High</option>
+                <option value="high">Price: High → Low</option>
+            </select>
+        </div>
+
+        <div id="productList" class="products">
+
+            <!-- 12 DRESS CARDS -->
+            <div class="card" data-price="1499">
+                <!-- external image kept as-is -->
+                <img src="https://image2url.com/images/1765213425038-c3487fcd-49a3-45d5-bf87-4f987469412a.jpg" alt="Summer Floral Midi">
+                <div class="card-name">Summer Floral Midi (Women)</div>
+                <div class="card-price">₹999</div>
+                <button class="view-btn">View</button>
+            </div>
+
+            <div class="card" data-price="1599">
+                <img src="images/iwk men.jpg" alt="Indo-Western Kurta Set">
+                <div class="card-name">Men’s Indo-Western Kurta Set</div>
+                <div class="card-price">₹1099</div>
+                <button class="view-btn">View</button>
+            </div>
+
+            <div class="card" data-price="1399">
+                <img src="images/ethnic women.jpg" alt="Embroided Kurta">
+                <div class="card-name">Embroided Kurta (Women)</div>
+                <div class="card-price">₹1199</div>
+                <button class="view-btn">View</button>
+            </div>
+
+            <div class="card" data-price="1199">
+                <img src="images/linen man.jpg" alt="Casual Linen Kurta">
+                <div class="card-name">Casual Linen Kurta (Men)</div>
+                <div class="card-price">₹899</div>
+                <button class="view-btn">View</button>
+            </div>
+
+            <div class="card" data-price="1699">
+                <!-- external image kept as-is -->
+                <img src="https://image2url.com/images/1765213764360-e5fe8e8d-5bf8-4449-85cb-c0f6deed6e50.jpg" alt="Satin Night Party Dress">
+                <div class="card-name">Satin Night Party Dress (Women)</div>
+                <div class="card-price">₹1699</div>
+                <button class="view-btn">View</button>
+            </div>
+
+            <div class="card" data-price="1299">
+                <img src="images/emb men.jpg" alt="Embroidered Kurta">
+                <div class="card-name">Embroidered Kurta Classic (Men)</div>
+                <div class="card-price">₹1299</div>
+                <button class="view-btn">View</button>
+            </div>
+
+            <div class="card" data-price="1499">
+                <img src="images/vintage wmn.jpg" alt="Vintage Gown">
+                <div class="card-name">Vintage Gown (Women)</div>
+                <div class="card-price">₹1299</div>
+                <button class="view-btn">View</button>
+            </div>
+
+            <div class="card" data-price="1399">
+                <img src="images/ethnic men.jpg" alt="Printed Ethnic Kurta">
+                <div class="card-name">Printed Ethnic Kurta (Men)</div>
+                <div class="card-price">₹1399</div>
+                <button class="view-btn">View</button>
+            </div>
+
+            <div class="card" data-price="999">
+                <!-- external image kept as-is -->
+                <img src="https://image2url.com/images/1765214008339-089a397d-d17c-4ab1-8a38-04f7fbc8e386.jpg" alt="Casual A-Line Dress">
+                <div class="card-name">Casual A-Line Dress (Women)</div>
+                <div class="card-price">₹999</div>
+                <button class="view-btn">View</button>
+            </div>
+
+            <div class="card" data-price="1599">
+                <img src="images/silk women.jpg" alt="Royal Silk Kurta">
+                <div class="card-name">Royal Silk Kurta (Women)</div>
+                <div class="card-price">₹1399</div>
+                <button class="view-btn">View</button>
+            </div>
+
+            <div class="card" data-price="1399">
+                <!-- external image kept as-is -->
+                <img src="https://image2url.com/images/1765214232537-c676799e-107e-4712-9153-de2a7e136301.jpg" alt="Wrap Front Elegant Dress">
+                <div class="card-name">Wrap Front Elegant Dress (Women)</div>
+                <div class="card-price">₹1100</div>
+                <button class="view-btn">View</button>
+            </div>
+
+            <div class="card" data-price="1799">
+                <img src="images/sherwani men.jpg" alt="Designer Sherwani">
+                <div class="card-name">Designer Sherwani Lite (Men)</div>
+                <div class="card-price">₹1799</div>
+                <button class="view-btn">View</button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+function sortProducts(){
+    let option = document.getElementById("sortSelect").value;
+    let products = [...document.querySelectorAll(".card")];
+    let list = document.getElementById("productList");
+
+    list.innerHTML = "";
+
+    if(option === "low"){
+        products.sort((a,b)=>a.dataset.price - b.dataset.price);
+    } 
+    else if(option === "high"){
+        products.sort((a,b)=>b.dataset.price - a.dataset.price);
+    }
+
+    products.forEach(p => list.appendChild(p));
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>TrendÉvo — Login</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --accent:#ffffff;
+      --muted: rgba(255,255,255,0.75);
+      --card-bg: linear-gradient(135deg, rgba(10,11,13,0.88), rgba(30,31,34,0.92));
+      --radius:14px;
+      --shadow-strong: 0 28px 50px rgba(6,6,8,0.55), inset 0 1px 0 rgba(255,255,255,0.02);
+      --input-bg: rgba(255,255,255,0.02);
+      --input-border: rgba(255,255,255,0.06);
+      --label-width: 90px; /* fixed label column width */
+    }
+
+    /* page / background */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+      background:
+        linear-gradient(120deg, rgba(6,7,10,0.65), rgba(10,12,15,0.72)),
+        url("images/photorunway.jpg") center/cover no-repeat fixed;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      color:var(--accent);
+    }
+
+    /* Card */
+    .card{
+      width:500px;               /* EXACT width you wanted */
+      max-width:95%;
+      border-radius:var(--radius);
+      padding:34px 34px;
+      background: var(--card-bg);
+      box-shadow: var(--shadow-strong);
+      backdrop-filter: blur(8px);
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    /* Brand row: avatar + title */
+    .brand {
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
+    .avatar {
+      width:48px;
+      height:48px;
+      border-radius:50%;
+      border:1px solid rgba(255,255,255,0.06);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:600;
+      color:rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.02);
+      flex-shrink:0;
+    }
+    .brand h1 {
+      font-size:18px;
+      margin:0;
+      font-weight:700;
+      letter-spacing:0.02em;
+    }
+    .brand .sub { font-size:13px; color: var(--muted); margin-top:4px; }
+
+    .lead {
+      color: var(--muted);
+      font-size:14px;
+      line-height:1.5;
+      margin-top:6px;
+    }
+
+    /* Form layout: two-column grid (label + control) */
+    form {
+      margin-top:6px;
+      display: grid;
+      grid-template-columns: var(--label-width) 1fr;
+      row-gap:18px;
+      column-gap:18px;
+      align-items:center;
+    }
+
+    label {
+      font-size:14px;
+      color: var(--muted);
+      justify-self:start;
+      align-self:center;
+    }
+
+    .control {
+      width:100%;
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    input[type="email"],
+    input[type="password"],
+    input[type="text"] {
+      width:100%;
+      padding:12px 14px;
+      border-radius:10px;
+      border:1px solid var(--input-border);
+      background:var(--input-bg);
+      color:var(--accent);
+      font-size:14px;
+      outline:none;
+      transition:box-shadow .15s ease, transform .12s ease, border-color .12s ease;
+    }
+
+    input::placeholder { color: rgba(255,255,255,0.35); }
+
+    input:focus {
+      border-color: rgba(255,255,255,0.22);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.45), 0 0 8px rgba(255,255,255,0.03) inset;
+      transform: translateY(-1px);
+    }
+
+    /* Actions row: keep label empty on left to align with inputs */
+    .actions-row {
+      grid-column: 1 / -1; /* full width row */
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-top:4px;
+    }
+
+    .create-link { color:var(--muted); text-decoration:none; font-size:14px; }
+
+    /* Sign-in button style */
+    .btn {
+      padding:10px 18px;
+      border-radius:999px;
+      border:none;
+      cursor:pointer;
+      background:var(--accent);
+      color:#07080a;
+      font-weight:700;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.45); }
+
+    /* footer small text centered */
+    .card-footer {
+      margin-top:6px;
+      text-align:center;
+      font-size:13px;
+      color:var(--muted);
+      grid-column: 1 / -1;
+    }
+
+    /* small responsive tweak */
+    @media (max-width:520px) {
+      .card { width:94%; padding:20px; }
+      form { grid-template-columns: 1fr; }
+      label { justify-self:start; }
+      .actions-row { flex-direction:column; align-items:flex-start; gap:10px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card" role="main" aria-labelledby="loginTitle">
+    <div class="brand">
+      <div class="avatar">T</div>
+      <div>
+        <h1 id="loginTitle">TrendÉvo</h1>
+        <div class="sub">Sign in</div>
+      </div>
+    </div>
+
+    <div class="lead">Sign in to access your trend reports and workspace.</div>
+
+    <form id="loginForm" onsubmit="return handleLogin(event)">
+      <label for="email">Email</label>
+      <div class="control">
+        <input id="email" type="email" required placeholder="Enter Email" />
+      </div>
+
+      <label for="password">Password</label>
+      <div class="control">
+        <input id="password" type="password" required minlength="6" placeholder="Enter Password" />
+      </div>
+
+      <div class="actions-row">
+        <a class="create-link" href="signup.html">Create account</a>
+        <button class="btn" type="submit">Sign in</button>
+      </div>
+
+      <div class="card-footer">By signing in you agree to our Terms & Privacy.</div>
+    </form>
+  </div>
+
+  <!-- REAL LOGIN CODE (Uses Flask backend) -->
+  <!-- <script>
+    async function handleLogin(e) {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+
+      if (!email || password.length < 6) {
+        alert("Enter valid credentials (password min 6 chars).");
+        return false;
+      }
+
+      try {
+        const res = await fetch("http://127.0.0.1:5000/api/auth/login", {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password })
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          alert(data.message || "Login failed");
+          return false;
+        }
+
+        alert("Login successful!");
+        window.location.href = "shop.html";
+
+        return false;
+
+      } catch (err) {
+        alert("Network error: " + err.message);
+        return false;
+      }
+    }
+  </script> -->
+  <script>
+async function handleLogin(e){
+  e.preventDefault();
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+
+  if(!email || password.length < 6){
+    alert('Enter valid credentials (password min 6 chars)');
+    return false;
+  }
+
+  try {
+    const res = await fetch("http://127.0.0.1:5000/api/auth/login", {
+      method: "POST",
+      credentials: "include",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({ email, password })
+    });
+    const data = await res.json();
+    if(!res.ok){
+      alert(data.message || "Login failed");
+      return false;
+    }
+    // success -> ask backend to serve the shop page
+    window.location.href = "http://127.0.0.1:5000/shop";
+    return false;
+  } catch(err) {
+    alert("Network error: " + err.message);
+    return false;
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>TrendÉvo | Fashion Trend Forecasting</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-dark: #111319;
+      --bg-light: #f5f5f7;
+      --accent: #ffffff;
+      --accent-dark: #22252e;
+      --primary: #111319;
+      --text-main: #f8f8fa;
+      --text-muted: #d4d4dd;
+      --border-soft: rgba(255, 255, 255, 0.25);
+      --shadow-soft: 0 18px 60px rgba(0, 0, 0, 0.35);
+      --radius-xl: 999px;
+      --transition-fast: 0.23s ease;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: url("backend\static\images\photo.runway.jpg") no-repeat center center fixed;
+      background-size: cover;
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    /*.landing { min-height: 100vh; background: radial-gradient(circle at top left, #2c313f 0, #05060a 52%, #000 100%); position: relative; color: var(--text-main); }*/
+    .landing {
+  background:
+    radial-gradient(circle at top left, #2c313f 0, #05060a 52%, #000 100%),
+    url("images/photorunway.jpg") center/cover no-repeat;
+}
+  /* background:
+    radial-gradient(circle at top left, #2c313f 0, #05060a 52%, #000 100%),
+    url("backend\static\images\photorunway.jpg") center/cover no-repeat;
+} */
+    .frame { max-width: 1440px; margin: 0 auto; min-height: 100vh; position: relative; box-shadow: var(--shadow-soft); overflow: hidden; border-radius: 6px; }
+    .hero { position: relative; min-height: 100vh; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.3fr); align-items: stretch; background: transparent; }
+    @media (max-width: 900px) { .hero { grid-template-columns: 1fr; grid-template-rows: auto auto; } }
+
+    /* NAVBAR */
+    .navbar { position: absolute; z-index: 30; top: 0; left: 0; right: 0; padding: 22px 56px; display: flex; align-items: center; justify-content: space-between; mix-blend-mode: lighten; }
+    @media (max-width: 768px) { .navbar { padding: 18px 20px; } }
+    .nav-left { display: flex; align-items: center; gap: 10px; }
+    .logo-circle { width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.35); display: flex; align-items: center; justify-content: center; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; }
+    .logo-text { font-weight: 500; letter-spacing: 0.18em; font-size: 11px; text-transform: uppercase; opacity: 0.9; }
+    .nav-links { display: flex; align-items: center; gap: 28px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.18em; }
+    .nav-links a { text-decoration: none; color: var(--text-main); position: relative; opacity: 0.85; transition: opacity var(--transition-fast); }
+    .nav-links a::after { content: ""; position: absolute; left: 0; bottom: -6px; width: 0; height: 1px; background: var(--accent); transition: width var(--transition-fast); }
+    .nav-links a:hover { opacity: 1; }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .nav-login { font-size: 13px; text-transform: uppercase; letter-spacing: 0.18em; opacity: 0.85; text-decoration: none; color: var(--text-main); transition: opacity var(--transition-fast); }
+    .nav-login:hover { opacity: 1; }
+    .btn-pill { font-size: 12px; padding: 10px 18px; border-radius: 40px; border: 1px solid var(--border-soft); background: rgba(255,255,255,0.06); color: var(--accent); text-decoration: none; text-transform: uppercase; letter-spacing: 0.12em; display: inline-flex; align-items: center; gap: 8px; backdrop-filter: blur(12px); cursor: pointer; transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast); }
+    .btn-pill .arrow { font-size: 14px; transform: translateX(0); transition: transform var(--transition-fast); }
+    .btn-pill:hover { background: var(--accent); color: var(--primary); border-color: transparent; transform: translateY(-1px); box-shadow: 0 12px 30px rgba(0,0,0,0.35); }
+    .btn-pill:hover .arrow { transform: translateX(3px); }
+
+    .burger { display: none; width: 32px; height: 20px; flex-direction: column; justify-content: space-between; cursor: pointer; }
+    .burger span { height: 2px; width: 100%; background: var(--accent); }
+    @media (max-width: 768px) {
+      .nav-links, .nav-right { display: none; }
+      .burger { display: flex; }
+      .navbar.open .nav-links, .navbar.open .nav-right {
+        position: absolute; inset: 70px 20px auto; background: rgba(6, 7, 13, 0.96); padding: 18px 20px; border-radius: 16px; flex-direction: column; align-items: flex-start; gap: 16px; display: flex; border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .navbar.open .nav-right { inset: 150px 20px auto; }
+    }
+
+    /* LEFT HERO CONTENT */
+    .hero-left { padding: 160px 80px 80px 80px; display: flex; flex-direction: column; justify-content: center; gap: 28px; position: relative; z-index: 5; }
+    @media (max-width: 900px) { .hero-left { padding: 130px 24px 40px; text-align: left; } }
+    .hero-kicker { font-size: 12px; letter-spacing: 0.25em; text-transform: uppercase; opacity: 0.7; }
+    .hero-title { font-family: "Playfair Display", serif; font-size: clamp(2.7rem, 3.4vw, 3.7rem); line-height: 1.15; font-weight: 500; }
+    .hero-subtitle { font-size: 1.2rem; max-width: 28rem; color: var(--text-muted); line-height: 1.6; }
+    .hero-cta-row { display: flex; align-items: center; gap: 18px; margin-top: 8px; }
+    .btn-solid { border-radius: var(--radius-xl); padding: 12px 26px; border: none; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; background: var(--accent); color: var(--primary); display: inline-flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; text-decoration: none; box-shadow: 0 14px 35px rgba(0, 0, 0, 0.45); transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast); }
+    .btn-solid:hover { transform: translateY(-2px); box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6); background: #f1f1f1; }
+    .btn-solid .arrow { font-size: 16px; transform: translateX(0); transition: transform var(--transition-fast); }
+    .btn-solid:hover .arrow { transform: translateX(4px); }
+    .hero-note { font-size: 12px; color: var(--text-muted); max-width: 20rem; }
+
+    /* RIGHT HERO IMAGE PANEL */
+    .hero-right { position: relative; overflow: hidden; }
+    .hero-photo {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to left, rgba(0, 0, 0, 0.35), transparent 45%), url("images/photorunway.jpg") center/cover no-repeat;
+      transform: scale(1.02);
+      transition: transform 12s ease-out;
+    }
+    .hero-right::before { content: ""; position: absolute; inset: 0; border-left: 1px solid rgba(255, 255, 255, 0.18); mix-blend-mode: soft-light; pointer-events: none; }
+    .hero-progress { position: absolute; right: 32px; top: 18%; bottom: 13%; width: 1px; background: rgba(255, 255, 255, 0.26); display: flex; justify-content: flex-end; overflow: hidden; }
+    .hero-progress span { width: 100%; height: 80%; background: #ffffff; transform-origin: bottom; transform: scaleY(0.06); opacity: 0.95; }
+    .hero-progress-label { position: absolute; right: 26px; bottom: 12%; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.9; }
+    .hero-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.42); display: flex; align-items: center; justify-content: center; cursor: pointer; backdrop-filter: blur(16px); background: rgba(0, 0, 0, 0.18); transition: background var(--transition-fast), transform var(--transition-fast); font-size: 16px; }
+    .hero-arrow:hover { background: rgba(255, 255, 255, 0.1); transform: translateY(-50%) translateX(-2px); }
+    .hero-arrow.right { right: 56px; transform: translateY(-50%); }
+    .hero-arrow.left { left: 40px; }
+    .scroll-down { position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%); width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.35); display: flex; align-items: center; justify-content: center; cursor: pointer; background: rgba(7, 7, 12, 0.8); backdrop-filter: blur(12px); font-size: 16px; transition: transform var(--transition-fast), background var(--transition-fast); }
+    .scroll-down:hover { transform: translateX(-50%) translateY(2px); background: rgba(255, 255, 255, 0.1); }
+
+    /* next section (About) */
+    .next-section { background: var(--bg-light); color: #111; padding: 80px 18vw; font-size: 0.95rem; line-height: 1.8; }
+    .next-section h2 { font-family: "Playfair Display", serif; font-size: 1.9rem; margin-bottom: 12px; }
+    .next-section p { max-width: 640px; }
+
+    /* RESOURCES SECTION (new) */
+    .resources {
+      padding: 64px 18vw;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      color: var(--text-main);
+    }
+    @media (max-width: 900px) { .resources { padding: 40px 5vw; } .next-section { padding: 60px 5vw; } }
+    .resources h2 { font-family: "Playfair Display", serif; font-size: 1.8rem; margin-bottom: 10px; color: var(--accent); }
+    .resources p.lead { color: var(--text-muted); margin-bottom: 22px; max-width: 720px; }
+    .resource-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    @media (max-width: 1100px) { .resource-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 700px) { .resource-grid { grid-template-columns: 1fr; } }
+    .resource-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 18px;
+      min-height: 140px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    }
+    .resource-card:hover { transform: translateY(-6px); box-shadow: 0 14px 30px rgba(0,0,0,0.5); }
+    .resource-card h3 { margin: 0; font-size: 1.05rem; }
+    .resource-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.4; }
+    .resource-actions { margin-top: auto; display: flex; gap: 10px; }
+    .resource-btn { font-size: 12px; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.06); text-decoration: none; color: var(--text-main); background: rgba(255,255,255,0.02); }
+    .resource-badge { font-size: 11px; padding: 6px 10px; border-radius: 999px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.04); color: var(--text-muted); }
+
+  </style>
+</head>
+<body>
+  <div class="landing">
+    <div class="frame">
+      <header class="navbar" id="navbar">
+        <div class="nav-left">
+          <div class="logo-circle">T</div>
+          <div class="logo-text">TrendÉvo</div>
+        </div>
+
+        <nav class="nav-links">
+          <!-- About and Resources -->
+          <a href="#about">About Us</a>
+          <a href="#resources">Resources</a>
+        </nav>
+
+        <div class="nav-right">
+          <!-- Correct relative links -->
+          <a href="login.html" class="nav-login">Log In</a>
+          <a href="signup.html" class="btn-pill">
+            <span>Sign Up</span>
+            <span class="arrow">→</span>
+          </a>
+        </div>
+
+        <div class="burger" id="burger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </header>
+
+      <main class="hero">
+        <section class="hero-left">
+          <div class="hero-kicker">TrendÉvo · Fashion Intelligence</div>
+          <h1 class="hero-title">Fashion Trend Forecasting</h1>
+          <p class="hero-subtitle">To develop collections with confidence and launch styles that are aligned with tomorrow’s demand.</p>
+
+          <div class="hero-cta-row">
+            <!-- SIGN UP CTA (replaces Book a Demo) -->
+            <a href="signup.html" class="btn-solid">
+              <span>Get Started</span>
+              <span class="arrow">→</span>
+            </a>
+            <p class="hero-note">AI-powered insights on colors, silhouettes, fabrics and more — built for modern product teams.</p>
+          </div>
+        </section>
+
+        <aside class="hero-right">
+          <div class="hero-photo"></div>
+
+          <div class="hero-progress"><span></span></div>
+          <div class="hero-progress-label">01</div>
+
+          <button class="hero-arrow left" type="button" aria-label="Previous">‹</button>
+          <button class="hero-arrow right" type="button" aria-label="Next">›</button>
+
+          <button class="scroll-down" id="scrollDown" type="button" aria-label="Scroll down">˅</button>
+        </aside>
+      </main>
+
+      <section class="next-section" id="about">
+        <h2>About TrendÉvo</h2>
+        <p>Trendevo helps fashion and lifestyle brands anticipate what customers will want next. Use real-time market signals, social data and retail analytics to design focused collections, cut guesswork and reduce overstock — all from one intuitive dashboard.</p>
+      </section>
+
+      <!-- RESOURCES SECTION: added in same file as requested -->
+      <section class="resources" id="resources">
+        <h2>Resources</h2>
+        <p class="lead">Hand-picked content to help product teams, designers and merchandisers — market briefs, color reports and trend kits updated monthly.</p>
+
+        <div class="resource-grid">
+          <article class="resource-card">
+            <div class="resource-badge">Report · Nov 2025</div>
+            <h3>Seasonal Forecast — Spring 2026</h3>
+            <p>Deep-dive on silhouettes, palette priorities and fabric trends for Spring 2026. Includes street signal analysis and retail sell-through benchmarks.</p>
+            <div class="resource-actions">
+              <a class="resource-btn" href="#" onclick="alert('Download simulated — replace with real link')">Download PDF</a>
+              <a class="resource-btn" href="#resources">Read</a>
+            </div>
+          </article>
+
+          <article class="resource-card">
+            <div class="resource-badge">Guide</div>
+            <h3>How to Create a Color Story</h3>
+            <p>Practical guide for creating compelling color stories that align with consumer behavior and wholesale demand.</p>
+            <div class="resource-actions">
+              <a class="resource-btn" href="#">Open</a>
+              <a class="resource-btn" href="#">Share</a>
+            </div>
+          </article>
+
+          <article class="resource-card">
+            <div class="resource-badge">Dataset</div>
+            <h3>Top 50 Silhouette Tags (Retail Signals)</h3>
+            <p>A curated dataset of the most-searched silhouette attributes across major retail platforms over the past 12 months.</p>
+            <div class="resource-actions">
+              <a class="resource-btn" href="#">Explore</a>
+              <a class="resource-btn" href="#">API</a>
+            </div>
+          </article>
+
+          <article class="resource-card">
+            <div class="resource-badge">Webinar</div>
+            <h3>Design to Demand: Reducing Overstock</h3>
+            <p>Replay of our webinar — best practices for aligning MOQ, assortment depth and forecasting to cut markdowns.</p>
+            <div class="resource-actions">
+              <a class="resource-btn" href="#">Watch</a>
+              <a class="resource-btn" href="#">Transcript</a>
+            </div>
+          </article>
+
+          <article class="resource-card">
+            <div class="resource-badge">Template</div>
+            <h3>Product Line Plan (PLP) Template</h3>
+            <p>A ready-to-use PLP spreadsheet and checklist to plan seasons faster and with fewer iterations.</p>
+            <div class="resource-actions">
+              <a class="resource-btn" href="#">Use Template</a>
+              <a class="resource-btn" href="#">Preview</a>
+            </div>
+          </article>
+
+          <article class="resource-card">
+            <div class="resource-badge">Case Study</div>
+            <h3>Brand X — 30% Fewer Markdowns</h3>
+            <p>Case study: how TrendÉvo signals helped Brand X reduce markdowns and optimize replenishments.</p>
+            <div class="resource-actions">
+              <a class="resource-btn" href="#">Read</a>
+              <a class="resource-btn" href="#">Share</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    // Smooth scroll for "scroll-down" button
+    document.getElementById("scrollDown").addEventListener("click", function () {
+      const next = document.querySelector(".next-section");
+      if (!next) return;
+      window.scrollTo({
+        top: next.offsetTop,
+        behavior: "smooth",
+      });
+    });
+
+    // Smooth scroll for all internal links
+    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+      anchor.addEventListener("click", function (e) {
+        const targetId = this.getAttribute("href");
+        if (targetId.length <= 1) return;
+        const el = document.querySelector(targetId);
+        if (!el) return;
+        e.preventDefault();
+        window.scrollTo({
+          top: el.offsetTop - 60,
+          behavior: "smooth",
+        });
+      });
+    });
+
+    // Simple mobile nav toggle
+    const navbar = document.getElementById("navbar");
+    const burger = document.getElementById("burger");
+    burger.addEventListener("click", function () {
+      navbar.classList.toggle("open");
+    });
+
+    // Small parallax zoom on hero image
+    window.addEventListener("load", function () {
+      const photo = document.querySelector(".hero-photo");
+      if (!photo) return;
+      requestAnimationFrame(function () {
+        photo.style.transform = "scale(1)";
+      });
+    });
+  </script>
+</body>
+</html>
