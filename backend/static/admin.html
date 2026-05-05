@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TrendÉvo Admin Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f5f5f5; color: #111; padding: 24px; }
+    .card { background: #fff; border-radius: 12px; padding: 24px; max-width: 640px; margin: auto; box-shadow: 0 14px 40px rgba(0,0,0,0.08); }
+    button { padding: 12px 20px; border: none; border-radius: 8px; background: #0f3d7e; color: #fff; cursor: pointer; }
+    pre { background: #0d1c39; color: #dbeafe; padding: 16px; border-radius: 12px; overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Admin Dashboard Demo</h1>
+    <p>This page demonstrates a protected backend request.</p>
+    <p>After login, your token is stored in <code>localStorage.token</code>. Use it here:</p>
+    <pre><code>fetch("http://127.0.0.1:5000/api/admin/dashboard", {
+  headers: {
+    "Authorization": "Bearer " + localStorage.getItem("token")
+  }
+});</code></pre>
+
+    <button id="loadDashboard">Call Protected Admin Route</button>
+    <h2>Response</h2>
+    <pre id="result">No request made yet.</pre>
+  </div>
+
+  <script>
+document.getElementById("loadDashboard").addEventListener("click", async () => {
+  try {
+    const res = await fetch("http://127.0.0.1:5000/api/admin/dashboard", {
+      credentials: "include"
+    });
+
+    const data = await res.json();
+    document.getElementById("result").textContent = JSON.stringify(data, null, 2);
+
+  } catch (err) {
+    document.getElementById("result").textContent = "Error: " + err.message;
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Thrift Marketplace</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+background:#faf7f2;
+color:#333;
+}
+
+/* NAVBAR */
+
+.navbar{
+position:sticky;
+top:0;
+background:#fff;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:16px 40px;
+box-shadow:0 4px 20px rgba(0,0,0,0.05);
+z-index:999;
+}
+
+.navbar h2{
+font-family:'Playfair Display',serif;
+margin:0;
+color:#c96a4b;
+}
+
+.nav-links a{
+margin-left:25px;
+text-decoration:none;
+color:#444;
+font-weight:500;
+}
+
+/* HERO */
+
+.hero{
+height:85vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+background:linear-gradient(120deg,#f5e6d3,#e3f0e5,#f7d7c4);
+}
+
+.hero h1{
+font-family:'Playfair Display',serif;
+font-size:52px;
+margin-bottom:10px;
+}
+
+.hero p{
+max-width:650px;
+font-size:18px;
+opacity:.8;
+}
+
+.cta{
+margin-top:25px;
+padding:14px 30px;
+background:#c96a4b;
+color:white;
+border:none;
+border-radius:30px;
+cursor:pointer;
+font-size:16px;
+transition:.3s;
+}
+
+.cta:hover{
+transform:translateY(-3px);
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+.badge{
+margin-top:18px;
+background:#e7f4ea;
+padding:8px 14px;
+border-radius:20px;
+font-size:14px;
+animation:float 3s infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0)}
+50%{transform:translateY(-8px)}
+100%{transform:translateY(0)}
+}
+
+/* CATALOG */
+
+.section{
+padding:70px 60px;
+}
+
+.section h2{
+font-family:'Playfair Display',serif;
+font-size:34px;
+margin-bottom:20px;
+}
+
+.search-bar{
+padding:12px;
+width:100%;
+max-width:400px;
+border-radius:30px;
+border:1px solid #ddd;
+margin-bottom:20px;
+}
+
+.filters button{
+margin:6px;
+padding:8px 16px;
+border:none;
+background:#eee;
+border-radius:20px;
+cursor:pointer;
+}
+
+.filters button.active{
+background:#c96a4b;
+color:white;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:16px;
+box-shadow:0 8px 20px rgba(0,0,0,0.05);
+cursor:pointer;
+transition:.3s;
+opacity:1;
+}
+
+.card:hover{
+transform:translateY(-6px);
+box-shadow:0 20px 35px rgba(0,0,0,0.12);
+}
+
+.logo{
+width:60px;
+height:60px;
+border-radius:50%;
+background:#f1e2d5;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:600;
+font-size:22px;
+margin-bottom:10px;
+}
+
+.tag{
+display:inline-block;
+background:#e7f4ea;
+padding:4px 10px;
+border-radius:12px;
+font-size:12px;
+margin-top:8px;
+}
+
+.visit{
+margin-top:12px;
+padding:8px 14px;
+background:#c96a4b;
+color:white;
+border:none;
+border-radius:20px;
+}
+
+/* WHY */
+
+.why{
+background:#fff;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:30px;
+}
+
+.why-card{
+padding:30px;
+background:#f9f3ea;
+border-radius:18px;
+text-align:center;
+}
+
+/* NEWSLETTER */
+
+.news{
+background:#e9dbc8;
+text-align:center;
+padding:70px 20px;
+}
+
+.news input{
+padding:12px;
+border:none;
+border-radius:25px;
+width:250px;
+}
+
+.news button{
+padding:12px 20px;
+border:none;
+border-radius:25px;
+background:#333;
+color:white;
+margin-left:10px;
+}
+
+.success{
+margin-top:15px;
+color:#2e7d32;
+display:none;
+}
+
+@media(max-width:600px){
+.hero h1{font-size:34px}
+.section{padding:40px 20px}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+<h2>Thrift Marketplace</h2>
+<div class="nav-links">
+<a href="#hero">Home</a>
+<a href="#catalog">Brands</a>
+<a href="#why">Why Thrift</a>
+<a href="#news">Newsletter</a>
+</div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+<h1>Shop Smarter. Dress Better. Thrift More.</h1>
+<p>Discover sustainable and second-hand fashion brands that love the planet as much as you do.</p>
+<button class="cta" onclick="document.getElementById('catalog').scrollIntoView()">Explore Brands</button>
+<div class="badge">🌿 100% Sustainable Picks</div>
+</section>
+
+<!-- CATALOG -->
+<section class="section" id="catalog">
+<h2>Thrift & Sustainable Brands</h2>
+
+<input class="search-bar" placeholder="Search brands..." onkeyup="searchBrand(this.value)">
+
+<div class="filters">
+<button class="active" onclick="filterBrand('all',this)">All</button>
+<button onclick="filterBrand('indian',this)">🇮🇳 Indian</button>
+<button onclick="filterBrand('global',this)">🌍 Global</button>
+<button onclick="filterBrand('luxury',this)">👑 Luxury</button>
+<button onclick="filterBrand('second',this)">👗 Second-hand</button>
+</div>
+
+<div class="grid" id="grid"></div>
+
+</section>
+
+<!-- WHY -->
+<section class="section why" id="why">
+<div class="why-card">
+<h3>💰 Save Money</h3>
+<p>Get premium styles at a fraction of the price</p>
+</div>
+<div class="why-card">
+<h3>🌍 Save the Planet</h3>
+<p>Reduce fashion waste and carbon footprint</p>
+</div>
+<div class="why-card">
+<h3>🦋 Unique Style</h3>
+<p>Find one-of-a-kind pieces nobody else has</p>
+</div>
+</section>
+
+<!-- NEWS -->
+<section class="news" id="news">
+<h2>Stay Ahead of Thrift Trends</h2>
+<input id="email" placeholder="Enter email">
+<button onclick="subscribe()">Subscribe</button>
+<div class="success" id="success">You're in! Welcome to the thrift revolution. 🌿</div>
+</section>
+
+<script>
+
+const brands = [
+
+{n:"Sarojini Nagar Market",d:"Iconic Delhi thrift market for budget fashion",t:["indian","second"],l:"SN",u:"https://www.sarojininagar.com"},
+{n:"Reware",d:"Indian platform for pre-loved clothing",t:["indian","second"],l:"RW",u:"https://www.reware.in"},
+{n:"Flyrobe",d:"Rent designer outfits in India",t:["indian"],l:"FR",u:"https://www.flyrobe.com"},
+{n:"Bombay Closet Cleanse",d:"Mumbai thrift pop-up store",t:["indian","second"],l:"BC",u:"https://www.thebombayclosetcleanse.com"},
+{n:"Relove by Myntra",d:"Second-hand fashion on Myntra",t:["indian","second"],l:"RM",u:"https://www.myntra.com/relove"},
+{n:"Swapshop India",d:"Community clothing swap platform",t:["indian"],l:"SS",u:"https://www.swapshopindia.com"},
+
+{n:"ThredUp",d:"Largest online secondhand clothing store",t:["global","second"],l:"TU",u:"https://www.thredup.com"},
+{n:"Depop",d:"Gen-Z thrift & vintage fashion app",t:["global","second"],l:"DP",u:"https://www.depop.com"},
+{n:"Poshmark",d:"Buy and sell secondhand fashion",t:["global","second"],l:"PM",u:"https://www.poshmark.com"},
+{n:"Vinted",d:"European secondhand clothing marketplace",t:["global","second"],l:"VT",u:"https://www.vinted.com"},
+{n:"Patagonia Worn Wear",d:"Sustainable outdoor clothing resale",t:["global"],l:"PW",u:"https://www.patagonia.com/worn-wear"},
+{n:"Vestiaire Collective",d:"Luxury pre-owned fashion",t:["global","luxury"],l:"VC",u:"https://www.vestiairecollective.com"},
+{n:"The RealReal",d:"Authenticated luxury consignment",t:["global","luxury"],l:"RR",u:"https://www.therealreal.com"},
+{n:"Reformation",d:"Sustainable new fashion brand",t:["global"],l:"RF",u:"https://www.thereformation.com"}
+
+];
+
+let currentFilter="all";
+
+function render(){
+const grid=document.getElementById("grid");
+grid.innerHTML="";
+brands.forEach(b=>{
+if(currentFilter!=="all" && !b.t.includes(currentFilter)) return;
+
+let card=document.createElement("div");
+card.className="card";
+card.onclick=()=>window.open(b.u,"_blank","noopener");
+
+card.innerHTML=`
+<div class="logo">${b.l}</div>
+<h4>${b.n}</h4>
+<p>${b.d}</p>
+<div class="tag">${b.t.join(", ")}</div>
+<button class="visit">Visit Store</button>
+`;
+
+grid.appendChild(card);
+});
+}
+
+function filterBrand(type,el){
+currentFilter=type;
+document.querySelectorAll(".filters button").forEach(b=>b.classList.remove("active"));
+el.classList.add("active");
+render();
+}
+
+function searchBrand(val){
+val=val.toLowerCase();
+document.querySelectorAll(".card").forEach(c=>{
+c.style.display=c.innerText.toLowerCase().includes(val)?"block":"none";
+});
+}
+
+function subscribe(){
+document.getElementById("success").style.display="block";
+}
+
+render();
+
+</script>
+
+</body>
+</html>

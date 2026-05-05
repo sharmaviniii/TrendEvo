@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TrendÉvo – Fashion Intelligence</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+background:#f6f6f4;
+color:#222;
+}
+
+/* HERO */
+
+.container{
+padding:60px 80px;
+}
+
+.hero{
+display:grid;
+grid-template-columns:1.3fr 1fr;
+gap:40px;
+align-items:center;
+}
+
+.hero h1{
+font-family:'Playfair Display',serif;
+font-size:40px;
+margin-bottom:20px;
+}
+
+.mockup{
+background:white;
+border-radius:10px;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+padding:20px;
+}
+
+/* FORM */
+
+.form-box{
+background:#f2f2f2;
+padding:30px;
+border-radius:14px;
+}
+
+.form-box h2{
+font-family:'Playfair Display',serif;
+text-align:center;
+margin-bottom:20px;
+}
+
+.form-row{
+display:flex;
+gap:10px;
+}
+
+input,select{
+width:100%;
+padding:10px;
+border:1px solid #ddd;
+border-radius:6px;
+margin-bottom:10px;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#C9A84C;
+border:none;
+border-radius:20px;
+color:white;
+font-weight:500;
+cursor:pointer;
+}
+
+.note{
+font-size:12px;
+opacity:0.7;
+margin:10px 0;
+}
+
+/* SOCIAL PROOF */
+
+.brands{
+text-align:center;
+margin:60px 0;
+}
+
+.brands img{
+height:30px;
+margin:0 25px;
+opacity:0.6;
+}
+
+/* FOOTER */
+
+.footer{
+background:#fff;
+padding:50px 80px;
+}
+
+.footer-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:40px;
+}
+
+.logo{
+font-family:'Playfair Display',serif;
+font-size:24px;
+}
+
+.contact input{
+padding:10px;
+border-radius:20px;
+border:1px solid #ccc;
+}
+
+.contact button{
+margin-left:10px;
+padding:10px 20px;
+border-radius:20px;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:30px;
+font-size:14px;
+}
+
+.footer-grid h4{
+margin-bottom:10px;
+}
+
+.footer-bottom{
+text-align:center;
+margin-top:40px;
+font-size:12px;
+opacity:0.6;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+.hero{grid-template-columns:1fr;}
+.footer-grid{grid-template-columns:1fr 1fr;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="hero">
+
+<!-- LEFT -->
+<div>
+<h1>See TrendÉvo in action</h1>
+
+<div class="mockup">
+<img src="images1/demo.jpeg" width="100%" height="70%">
+<p style="font-size:12px;opacity:.6;">
+Trending items, color insights, growth analytics & AI predictions
+</p>
+</div>
+</div>
+
+<!-- RIGHT -->
+<div class="form-box">
+
+<h2>Get Started</h2>
+
+<div class="form-row">
+<input placeholder="First name">
+<input placeholder="Last name">
+</div>
+
+<input placeholder="Work email">
+<input placeholder="Job title">
+<input placeholder="Company name">
+
+<select>
+<option>Country</option>
+<option>India</option>
+<option>USA</option>
+</select>
+
+<select>
+<option>Industry</option>
+<option>Fashion</option>
+<option>Retail</option>
+</select>
+
+<p class="note">
+By submitting this form, you agree to our privacy policy.
+</p>
+
+<button onclick="submitForm()">Request a Demo</button>
+
+<p id="success" style="display:none;text-align:center;margin-top:15px;">
+Thank you! We'll contact you soon.
+</p>
+
+</div>
+
+</div>
+
+<!-- SOCIAL PROOF -->
+<div class="brands">
+<p>They use TrendÉvo</p>
+<img src="images1/logo1.png" height="60" width="70">
+<img src="images1/logo2.png" height="60" width="70">
+<img src="images1/logo3.png" height="100" width="60">
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+
+<div class="footer-top">
+
+<div class="logo">TrendÉvo</div>
+
+<div class="contact">
+<input placeholder="Your email">
+<button>SEND</button>
+</div>
+
+</div>
+
+<div class="footer-grid">
+
+<div>
+<p><b>Blending artificial intelligence with fashion expertise for predictive analytics on trends</b></p>
+</div>
+
+<div>
+<h4>Explore</h4>
+<p>Fashion Trends</p>
+<p>Events</p>
+<p>Webinars</p>
+</div>
+
+<div>
+<h4>Company</h4>
+<p>Careers</p>
+<p>Pricing</p>
+<p>FAQ</p>
+</div>
+
+<div>
+<h4>Press</h4>
+<p>press@trendÉvo.com</p>
+
+<h4>Newsletter</h4>
+<input placeholder="Email">
+<button>SUBMIT</button>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+© 2026 TrendÉvo • Privacy • Terms • India
+</div>
+
+</div>
+
+<script>
+
+function submitForm(){
+document.getElementById("success").style.display="block";
+}
+
+</script>
+
+</body>
+</html>

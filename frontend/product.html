@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TrendÉvo Marketplace</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+/* 🔥 Smooth scroll fix */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui;
+  background: radial-gradient(circle at top left, #1b2435, #050712);
+  color: white;
+  padding: 30px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.logo {
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-size: 18px;
+}
+
+.back-btn {
+  border: 1px solid #f3c46b;
+  color: #f3c46b;
+  background: transparent;
+  padding: 8px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+/* Grid */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+/* Card */
+.product-card {
+  background: #0c1019;
+  border-radius: 18px;
+  padding: 12px;
+  border: 1px solid #111827;
+  transition: 0.35s;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+}
+
+/* Image */
+.product-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+/* Info */
+.product-name {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.company {
+  font-size: 12px;
+  color: #9ca3b9;
+}
+
+.price {
+  color: #f3c46b;
+  margin-top: 5px;
+}
+
+/* Button */
+.buy-btn {
+  margin-top: 10px;
+  width: 100%;
+  padding: 10px;
+  border-radius: 999px;
+  border: none;
+  background: #f3c46b;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.buy-btn:hover {
+  background: #f7d58e;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="logo">TrendÉvo Sustainable Clothing 🌱</div>
+  <button class="back-btn" onclick="goBack()">← Back</button>
+</div>
+
+<div class="products-grid">
+
+<!-- ALL CLOTHING ONLY -->
+
+<div class="product-card">
+<img src="https://images.pexels.com/photos/994517/pexels-photo-994517.jpeg">
+<div class="product-name">Oversized Street Tee</div>
+<div class="company">No Nasties (Organic Cotton)</div>
+<div class="price">₹899</div>
+<button class="buy-btn">View</button>
+</div>
+
+<div class="product-card">
+<img src="https://images.pexels.com/photos/6311392/pexels-photo-6311392.jpeg">
+<div class="product-name">Ribbed Crop Top</div>
+<div class="company">Okhai Artisan</div>
+<div class="price">₹799</div>
+<button class="buy-btn">View</button>
+</div>
+
+<div class="product-card">
+<img src="https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg">
+<div class="product-name">Graphic Oversized Tee</div>
+<div class="company">Eco Clothing India</div>
+<div class="price">₹999</div>
+<button class="buy-btn">View</button>
+</div>
+
+<div class="product-card">
+<img src="https://data2.nssmag.com/images/galleries/34884/thumbs/nssgclub-black-dress-cover.jpg">
+<div class="product-name">Minimal Black Dress</div>
+<div class="company">Nete Slow Fashion</div>
+<div class="price">₹1299</div>
+<button class="buy-btn">View</button>
+</div>
+
+<div class="product-card">
+<img src="https://i5.walmartimages.com/seo/Coduop-Women-Seamed-Front-Wide-Leg-Jeans-Stretch-Denim-Flare-Jeans-High-Waist-Long-Jean-Trousers_a01a2170-03c5-4449-8c6c-389d00b234cc.d4ef6e3808a48db01b3f14a34bcdca7a.jpeg">
+<div class="product-name">Wide Leg Denim</div>
+<div class="company">Bunko Junko (Upcycled)</div>
+<div class="price">₹1499</div>
+<button class="buy-btn">View</button>
+</div>
+
+<div class="product-card">
+<img src="https://images.pexels.com/photos/5325884/pexels-photo-5325884.jpeg">
+<div class="product-name">Street Cargo Pants</div>
+<div class="company">Virgio Eco Wear</div>
+<div class="price">₹1399</div>
+<button class="buy-btn">View</button>
+</div>
+
+<div class="product-card">
+<img src="https://images.pexels.com/photos/1036623/pexels-photo-1036623.jpeg">
+<div class="product-name">High Waist Denim</div>
+<div class="company">H&M Conscious</div>
+<div class="price">₹1199</div>
+<button class="buy-btn">View</button>
+</div>
+
+<div class="product-card">
+<img src="https://c8.alamy.com/comp/2J0NF9P/front-of-the-classic-blue-jeans-2J0NF9P.jpg">
+<div class="product-name">Classic Blue Jeans</div>
+<div class="company">ALAMY Sustainable</div>
+<div class="price">₹1799</div>
+<button class="buy-btn">View</button>
+</div>
+
+<div class="product-card">
+<img src="https://images.pexels.com/photos/7691225/pexels-photo-7691225.jpeg">
+<div class="product-name">Denim Jacket</div>
+<div class="company">Fabindia Ecowear</div>
+<div class="price">₹1999</div>
+<button class="buy-btn">View</button>
+</div>
+
+<div class="product-card">
+<img src="https://img105.savana.com/goods-pic/0de047d8f1ae4a978ff70480ee134de8_w1440_q90.webp">
+<div class="product-name">Bodycon Dress</div>
+<div class="company">Global Desi</div>
+<div class="price">₹1599</div>
+<button class="buy-btn">View</button>
+</div>
+
+<div class="product-card">
+<img src="https://images.pexels.com/photos/6311385/pexels-photo-6311385.jpeg">
+<div class="product-name">Summer Cotton Shirt</div>
+<div class="company">Adheera Natural Dye</div>
+<div class="price">₹899</div>
+<button class="buy-btn">View</button>
+</div>
+
+<div class="product-card">
+<img src="https://images.pexels.com/photos/6311393/pexels-photo-6311393.jpeg">
+<div class="product-name">Relaxed Fit Kurta</div>
+<div class="company">Eco Clothing India</div>
+<div class="price">₹999</div>
+<button class="buy-btn">View</button>
+</div>
+
+</div>
+
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
+
+</body>
+</html>

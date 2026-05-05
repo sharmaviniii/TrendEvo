@@ -16,15 +16,15 @@
       --input-border: rgba(255,255,255,0.06);
       --label-width: 90px; /* fixed label column width */
     }
-
+    
     /* page / background */
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
     body{
       font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
       background:
-        linear-gradient(120deg, rgba(6,7,10,0.65), rgba(10,12,15,0.72)),
-        url("images/photorunway.jpg") center/cover no-repeat fixed;
+      linear-gradient(120deg, rgba(6,7,10,0.65), rgba(10,12,15,0.72)),
+      url("images/photorunway.jpg") center/cover no-repeat fixed;
       min-height:100vh;
       display:flex;
       align-items:center;
@@ -32,7 +32,7 @@
       padding:24px;
       color:var(--accent);
     }
-
+    
     /* Card */
     .card{
       width:500px;               /* EXACT width to match login */
@@ -46,7 +46,7 @@
       flex-direction:column;
       gap:18px;
     }
-
+    
     /* Brand row: avatar + title */
     .brand {
       display:flex;
@@ -73,14 +73,14 @@
       letter-spacing:0.02em;
     }
     .brand .sub { font-size:13px; color: var(--muted); margin-top:4px; }
-
+    
     .lead {
       color: var(--muted);
       font-size:14px;
       line-height:1.5;
       margin-top:6px;
     }
-
+    
     /* Form layout: two-column grid (label + control) */
     form {
       margin-top:6px;
@@ -90,21 +90,21 @@
       column-gap:18px;
       align-items:center;
     }
-
+    
     label {
       font-size:14px;
       color: var(--muted);
       justify-self:start;
       align-self:center;
     }
-
+    
     .control {
       width:100%;
       display:flex;
       align-items:center;
       gap:12px;
     }
-
+    
     input[type="email"],
     input[type="password"],
     input[type="text"] {
@@ -118,15 +118,15 @@
       outline:none;
       transition:box-shadow .15s ease, transform .12s ease, border-color .12s ease;
     }
-
+    
     input::placeholder { color: rgba(255,255,255,0.35); }
-
+    
     input:focus {
       border-color: rgba(255,255,255,0.22);
       box-shadow: 0 6px 18px rgba(0,0,0,0.45), 0 0 8px rgba(255,255,255,0.03) inset;
       transform: translateY(-1px);
     }
-
+    
     /* Actions row: keep label empty on left to align with inputs */
     .actions-row {
       grid-column: 1 / -1; /* full width row */
@@ -136,9 +136,9 @@
       gap:12px;
       margin-top:4px;
     }
-
+    
     .login-link { color:var(--muted); text-decoration:none; font-size:14px; }
-
+    
     /* Sign-up button style */
     .btn {
       padding:10px 18px;
@@ -152,7 +152,7 @@
       transition: transform .12s ease, box-shadow .12s ease;
     }
     .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.45); }
-
+    
     /* footer small text centered */
     .card-footer {
       margin-top:6px;
@@ -161,7 +161,7 @@
       color:var(--muted);
       grid-column: 1 / -1;
     }
-
+    
     /* small responsive tweak */
     @media (max-width:520px) {
       .card { width:94%; padding:20px; }
@@ -181,111 +181,144 @@
         <div class="sub">Create account</div>
       </div>
     </div>
-
+    
     <div class="lead">Create an account to save and access your trend dashboards.</div>
-
+    
     <form id="signupForm" onsubmit="return handleSignup(event)">
       <label for="name">Full name</label>
       <div class="control">
         <input id="name" type="text" required placeholder="Your name" />
       </div>
-
+      
       <label for="email">Email</label>
       <div class="control">
-        <input id="email" type="email" required placeholder="you@brand.com" />
+        <input
+        id="email"
+        type="email"
+        required
+        pattern="^[a-zA-Z0-9._%+-]+@(gmail|yahoo|outlook)\.com$"
+        placeholder="you@gmail.com"
+        />
       </div>
-
+      <label for="role">Role</label>
+      <div class="control">
+        <select id="role">
+          <option value="customer">Customer</option>
+          <option value="brand">Brand</option>
+        </select>
+      </div>
       <label for="password">Password</label>
       <div class="control">
-        <input id="password" type="password" required minlength="6" placeholder="At least 6 characters" />
+        <input id="password" type="password"
+        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{6,15}$"
+        required placeholder="Strong password" />
       </div>
-
+      
       <div class="actions-row">
         <a class="login-link" href="login.html">Already have an account?</a>
         <button class="btn" type="submit">Create account</button>
       </div>
-
+      
       <div class="card-footer">By creating an account you agree to our Terms & Privacy.</div>
     </form>
   </div>
-
+  
   <!-- REAL SIGNUP SCRIPT -->
   <!-- <script>
     async function handleSignup(e) {
+    e.preventDefault();
+    
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    
+    if (!name) {
+    alert("Please enter your full name.");
+    return false;
+    }
+    if (!email || password.length < 6) {
+    alert("Enter a valid email and password (min 6 chars).");
+    return false;
+    }
+    
+    try {
+    const res = await fetch("http://127.0.0.1:5000/api/auth/signup", {
+    method: "POST",
+    credentials: "include",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, email, password })
+    });
+    
+    const data = await res.json();
+    
+    if (!res.ok) {
+    alert(data.message || "Signup failed.");
+    return false;
+    }
+    
+    alert("Account created successfully! Please sign in.");
+    window.location.href = "shop.html";
+    
+    return false;
+    
+    } catch (err) {
+    alert("Network error: " + err.message);
+    return false;
+    }
+    }
+  </script> -->
+  <script>
+    async function handleSignup(e){
       e.preventDefault();
-
-      const name = document.getElementById("name").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value;
-
-      if (!name) {
-        alert("Please enter your full name.");
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{6,15}$/;
+      if (!passwordRegex.test(password)) {
+        alert("Password must include uppercase, lowercase, number, special character (6–15 chars)");
         return false;
       }
-      if (!email || password.length < 6) {
-        alert("Enter a valid email and password (min 6 chars).");
+      if(!name || !email || password.length < 6){
+        alert('Please fill all fields and use password >= 6 chars');
         return false;
       }
-
+      
       try {
+        const role = document.getElementById("role").value;
         const res = await fetch("http://127.0.0.1:5000/api/auth/signup", {
           method: "POST",
           credentials: "include",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name, email, password })
+          headers: { "Content-Type":"application/json" },
+          body: JSON.stringify({ name, email, password, role })
         });
-
-        const data = await res.json();
-
-        if (!res.ok) {
-          alert(data.message || "Signup failed.");
+        const text = await res.text();
+        
+        try {
+          const data = JSON.parse(text);
+          
+          if(!res.ok){
+            alert(data.message || "Signup failed");
+            return false;
+          }
+          
+          alert("Signup successful! Please verify your email before logging in.");
+          window.location.href = "verify.html?email=" + email;
+          
+          const params = new URLSearchParams(window.location.search);
+          document.getElementById("email").value = params.get("email");
+        }
+        catch (err) {
+          console.error("RAW RESPONSE:", text);
+          alert("Server error. Check console.");
           return false;
         }
-
-        alert("Account created successfully! Please sign in.");
-        window.location.href = "shop.html";
-
-        return false;
-
       } catch (err) {
         alert("Network error: " + err.message);
         return false;
       }
     }
-  </script> -->
-  <script>
-async function handleSignup(e){
-  e.preventDefault();
-  const name = document.getElementById('name').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const password = document.getElementById('password').value;
-
-  if(!name || !email || password.length < 6){
-    alert('Please fill all fields and use password >= 6 chars');
-    return false;
-  }
-
-  try {
-    const res = await fetch("http://127.0.0.1:5000/api/auth/signup", {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-Type":"application/json" },
-      body: JSON.stringify({ name, email, password })
-    });
-    const data = await res.json();
-    if(!res.ok){
-      alert(data.message || "Signup failed");
-      return false;
-    }
-    // success -> shop
-    window.location.href = "/shop";
-    return false;
-  } catch(err) {
-    alert("Network error: " + err.message);
-    return false;
-  }
-}
-</script>
-
+    
+  </script>
+  
 </body>
 </html>

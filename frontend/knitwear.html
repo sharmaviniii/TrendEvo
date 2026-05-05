@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Knitwear Collection</title>
+<title>Dresses Collection</title>
 
 <style>
 :root{
@@ -13,9 +13,10 @@
     --accent: #f3c46b;
     --accent-soft: #f7d58e;
     --muted: #9ca3b9;
-    --border-subtle: #111827;
+    --border-subtle: #1f2937;
     --radius-lg: 18px;
     --shadow-soft: 0 22px 60px rgba(0,0,0,0.8);
+    --pill-bg: #151827;
 }
 
 *{
@@ -31,25 +32,25 @@ body{
     min-height:100vh;
 }
 
-/* Layout */
+/* MAIN LAYOUT */
 .container{
     display:flex;
     width:100%;
     padding:26px 32px;
-    gap:30px;
+    gap:28px;
 }
 
-/* Sidebar */
+/* SIDEBAR */
 .sidebar{
     width:270px;
     background:var(--sidebar-bg);
     padding:40px 40px 50px;
     border-radius:var(--radius-lg);
-    height:fit-content;
     box-shadow:var(--shadow-soft);
-    border:1px solid var(--border-subtle);
+    border:1px solid #111827;
     position:sticky;
-    top:24px;
+    top:80px;
+    align-self:flex-start;
 }
 
 .sidebar h2{
@@ -89,32 +90,24 @@ body{
     padding:6px 8px;
     border-radius:10px;
     cursor:pointer;
-    transition:0.18s ease;
-}
-
-.sidebar label:hover{
-    background:#0f172a;
-    color:#e5e7eb;
 }
 
 .sidebar input[type="checkbox"]{
     width:15px;
     height:15px;
     accent-color:var(--accent);
-    cursor:pointer;
 }
 
-/* RIGHT SECTION */
+/* RIGHT SIDE */
 .grid{
     flex:1;
 }
 
 .grid-title{
     font-size:26px;
-    margin-bottom:6px;
     letter-spacing:.18em;
     text-transform:uppercase;
-    color:#f9fafb;
+    margin-bottom:6px;
 }
 
 .grid-subtitle{
@@ -126,11 +119,8 @@ body{
 .sort-row{
     display:flex;
     justify-content:flex-end;
-    align-items:center;
     margin-bottom:20px;
     gap:8px;
-    font-size:13px;
-    color:var(--muted);
 }
 
 .sort-row select{
@@ -139,44 +129,22 @@ body{
     border-radius:999px;
     color:#f9fafb;
     border:1px solid #111827;
-    font-size:13px;
-    outline:none;
 }
 
 /* PRODUCT GRID */
 .products{
     display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:24px;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
 }
 
-/* PRODUCT CARDS */
+/* CARD */
 .card{
     background:radial-gradient(circle at top left,#141827,#050712);
     padding:14px;
     border-radius:var(--radius-lg);
-    transition:0.25s ease;
-    box-shadow:0 18px 40px rgba(0,0,0,0.85);
+    box-shadow:0 18px 40px rgba(0,0,0,0.8);
     border:1px solid #111827;
-    position:relative;
-    overflow:hidden;
-}
-
-.card::before{
-    content:"";
-    position:absolute;
-    inset:-40%;
-    background:radial-gradient(circle at top,#f3c46b22,transparent 55%);
-    opacity:0;
-    transition:opacity .25s ease;
-}
-
-.card:hover::before{ opacity:1; }
-
-.card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 26px 60px rgba(0,0,0,0.95);
-    border-color:#f3c46b55;
 }
 
 .card img{
@@ -184,207 +152,214 @@ body{
     height:320px;
     object-fit:cover;
     border-radius:14px;
+    transition:0.3s;
 }
 
-.card-name{
-    font-size:15px;
-    margin-top:10px;
-    font-weight:500;
+/* Hover zoom */
+.card:hover img{
+    transform:scale(1.05);
 }
 
-.card-price{
-    font-size:14px;
-    opacity:0.85;
-    margin-top:2px;
-}
+.card-name{margin-top:10px;}
+.card-price{opacity:0.85;}
 
-/* VIEW BUTTON */
+/* BUTTON */
 .view-btn{
     margin-top:10px;
     background:var(--accent);
     border:none;
-    padding:9px 14px;
+    padding:9px;
     border-radius:999px;
-    cursor:pointer;
-    color:#111827;
     width:100%;
-    font-size:14px;
-    font-weight:600;
-    letter-spacing:.03em;
-    transition:.18s ease;
-    box-shadow:0 10px 26px rgba(0,0,0,0.75);
+    cursor:pointer;
 }
 
 .view-btn:hover{
     background:var(--accent-soft);
-    transform:translateY(-1px);
 }
 
-/* RESPONSIVE */
-@media (max-width:1024px){
-    .container{flex-direction:column;}
-    .sidebar{width:100%;position:static;}
-    .products{grid-template-columns:repeat(2,1fr);}
+/* MODAL */
+#imageModal{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.9);
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
 }
-@media (max-width:640px){
-    .container{padding:20px;}
-    .products{grid-template-columns:1fr;}
+
+#imageModal img{
+    max-width:85%;
+    max-height:85%;
+    border-radius:16px;
+}
+
+.close{
+    position:absolute;
+    top:20px;
+    right:30px;
+    font-size:30px;
+    color:white;
+    cursor:pointer;
 }
 </style>
 </head>
+
 <body>
-  <a href="shop.html" style="
-  position: fixed;
-  top: 35px;
-  left: 30px;
-  padding: 8px 16px;
-  border-radius: 999px;
-  background:#050712;
-  color:#f9fafb;
-  text-decoration:none;
-  font-size:13px;
-  border:1px solid #374151;
-">
-  ← Back to Home
+
+<a href="shop.html" style="position: fixed; top: 35px; left: 30px; padding: 8px 16px; border-radius: 999px; background:#050712; color:#f9fafb; text-decoration:none; font-size:13px; border:1px solid #374151;">
+← Back to Home
 </a>
 
 <div class="container">
 
-    <!-- SIDEBAR -->
-    <div class="sidebar">
-        <h2>FILTERS</h2>
+<!-- SIDEBAR -->
+<div class="sidebar">
+<h2>FILTERS</h2>
 
-        <div class="filter-section">
-            <div class="filter-title">SIZE</div>
-            <label><input type="checkbox"> XS</label>
-            <label><input type="checkbox"> S</label>
-            <label><input type="checkbox"> M</label>
-            <label><input type="checkbox"> L</label>
-            <label><input type="checkbox"> XL</label>
-        </div>
+<div class="filter-section">
+<div class="filter-title">SIZE</div>
+<label><input type="checkbox"> XS</label>
+<label><input type="checkbox"> S</label>
+<label><input type="checkbox"> M</label>
+<label><input type="checkbox"> L</label>
+<label><input type="checkbox"> XL</label>
+</div>
 
-        <div class="filter-section">
-            <div class="filter-title">COLOR</div>
-            <label><input type="checkbox"> Black</label>
-            <label><input type="checkbox"> Cream</label>
-            <label><input type="checkbox"> Grey</label>
-            <label><input type="checkbox"> Brown</label>
-            <label><input type="checkbox"> Maroon</label>
-        </div>
+<div class="filter-section">
+<div class="filter-title">COLOR</div>
+<label><input type="checkbox"> Black</label>
+<label><input type="checkbox"> Red</label>
+<label><input type="checkbox"> White</label>
+<label><input type="checkbox"> Beige</label>
+<label><input type="checkbox"> Pink</label>
+</div>
 
-        <div class="filter-section">
-            <div class="filter-title">PRICE</div>
-            <label><input type="checkbox"> ₹799 – ₹1199</label>
-            <label><input type="checkbox"> ₹1199 – ₹1599</label>
-            <label><input type="checkbox"> ₹1599 – ₹1999</label>
-        </div>
-    </div>
+<div class="filter-section">
+<div class="filter-title">PRICE</div>
+<label><input type="checkbox"> ₹799 – ₹1199</label>
+<label><input type="checkbox"> ₹1199 – ₹1599</label>
+<label><input type="checkbox"> ₹1599 – ₹1999</label>
+</div>
+</div>
 
-    <!-- RIGHT GRID -->
-    <div class="grid">
+<!-- PRODUCTS -->
+<div class="grid">
 
-        <h1 class="grid-title">KNITWEAR COLLECTION</h1>
-        <p class="grid-subtitle">Soft, cozy layers for sweater weather, study days and slow evenings.</p>
+<h1 class="grid-title">DRESSES COLLECTION</h1>
+<p class="grid-subtitle">Curated mix of men’s & women’s occasion wear – sorted by comfort, fit & vibe.</p>
 
-        <div class="sort-row">
-            <span>Sort:</span>
-            <select id="sortSelect" onchange="sortProducts()">
-                <option value="">Recommended</option>
-                <option value="low">Price: Low → High</option>
-                <option value="high">Price: High → Low</option>
-            </select>
-        </div>
+<div class="sort-row">
+<span>Sort:</span>
+<select id="sortSelect" onchange="sortProducts()">
+<option value="">Recommended</option>
+<option value="low">Price: Low → High</option>
+<option value="high">Price: High → Low</option>
+</select>
+</div>
 
-        <div id="productList" class="products">
+<div id="productList" class="products">
 
-            <!-- 12 KNITWEAR CARDS -->
-            <div class="card" data-price="1399">
-                <img src="https://image2url.com/images/1765218833238-309fee0b-e27d-4e9a-9ee6-110313f38a2e.jpg">
-                <div class="card-name">Chunky Knit Sweater (Women)</div>
-                <div class="card-price">₹1399</div>
-                <button class="view-btn">View</button>
-            </div>
+<!-- SAME 12 CARDS -->
+<div class="card" data-price="1499">
+<img src="https://image2url.com/images/1765218833238-309fee0b-e27d-4e9a-9ee6-110313f38a2e.jpg">
 
-            <div class="card" data-price="1599">
-                <img src="https://image2url.com/images/1765218924570-8118c795-f086-4e40-9c5c-01c38b5c55b8.jpg">
-                <div class="card-name">Turtleneck Pullover (Men)</div>
-                <div class="card-price">₹1599</div>
-                <button class="view-btn">View</button>
-            </div>
+<div class="card-name">Chunky Knit Sweater (Women)</div>
+<div class="card-price">₹999</div>
+<button class="view-btn" onclick="openModal(this)">View</button>
+</div>
 
-            <div class="card" data-price="1299">
-                <img src="https://image2url.com/images/1765219171526-12b48496-5728-434c-8e58-2a796eda06c8.jpg">
-                <div class="card-name">Cable Knit Cardigan (Women)</div>
-                <div class="card-price">₹1299</div>
-                <button class="view-btn">View</button>
-            </div>
+<!-- (BAKI SAB SAME — maine sab include kiya hai) -->
 
-            <div class="card" data-price="1799">
-                <img src="https://image2url.com/images/1765219223652-b57f5376-40da-4fe6-984e-197705959932.jpg">
-                <div class="card-name">Wool Knit Hoodie (Men)</div>
-                <div class="card-price">₹1799</div>
-                <button class="view-btn">View</button>
-            </div>
+<div class="card" data-price="1599">
+<img src="https://image2url.com/images/1765218924570-8118c795-f086-4e40-9c5c-01c38b5c55b8.jpg">
+<div class="card-name">Turtleneck Pullover (Men)</div>
+<div class="card-price">₹1099</div>
+<button class="view-btn" onclick="openModal(this)">View</button>
+</div>
 
-            <div class="card" data-price="1499">
-                <img src="https://image2url.com/images/1765219262940-13cc3040-3419-4590-b2b2-cb18a97214a2.jpg">
-                <div class="card-name">Soft Winter Sweater (Women)</div>
-                <div class="card-price">₹1499</div>
-                <button class="view-btn">View</button>
-            </div>
+<div class="card" data-price="1399">
+<img src="https://image2url.com/images/1765219171526-12b48496-5728-434c-8e58-2a796eda06c8.jpg">
+<div class="card-name">Cable Knit Cardigan (Women)</div>
+<div class="card-price">₹1199</div>
+<button class="view-btn" onclick="openModal(this)">View</button>
+</div>
 
-            <div class="card" data-price="1699">
-                <img src="https://i.pinimg.com/736x/b6/b4/c9/b6b4c91b6189c12301c1e94bd1fbb74f.jpg">
-                <div class="card-name">Knitted Half-Zip (Men)</div>
-                <div class="card-price">₹1699</div>
-                <button class="view-btn">View</button>
-            </div>
+<div class="card" data-price="1199">
+<img src="https://image2url.com/images/1765219223652-b57f5376-40da-4fe6-984e-197705959932.jpg">
+<div class="card-name">Wool Knit Hoodie (Men)</div>
+<div class="card-price">₹899</div>
+<button class="view-btn" onclick="openModal(this)">View</button>
+</div>
 
-            <div class="card" data-price="1399">
-                <img src="https://image2url.com/images/1765219357258-31497466-c1cd-42a7-acf8-993fc2014f1c.jpg">
-                <div class="card-name">Fluffy Cozy Knit (Women)</div>
-                <div class="card-price">₹1399</div>
-                <button class="view-btn">View</button>
-            </div>
+<div class="card" data-price="1699">
+<img src="https://image2url.com/images/1765219262940-13cc3040-3419-4590-b2b2-cb18a97214a2.jpg">
+<div class="card-name">Soft Winter Sweater (Women)</div>
+<div class="card-price">₹1699</div>
+<button class="view-btn" onclick="openModal(this)">View</button>
+</div>
 
-            <div class="card" data-price="1599">
-                <img src="https://image2url.com/images/1765219402904-b147928a-bd73-4a6e-8eac-73d9ff66d9b0.jpg">
-                <div class="card-name">Classic Ribbed Sweater (Men)</div>
-                <div class="card-price">₹1599</div>
-                <button class="view-btn">View</button>
-            </div>
+<div class="card" data-price="1299">
+<img src="https://i.pinimg.com/736x/b6/b4/c9/b6b4c91b6189c12301c1e94bd1fbb74f.jpg">
+<div class="card-name">Knitted Half-Zip (Men)</div>
+<div class="card-price">₹1299</div>
+<button class="view-btn" onclick="openModal(this)">View</button>
+</div>
 
-            <div class="card" data-price="1699">
-                <img src="https://image2url.com/images/1765221039819-9a4b3d36-0edc-4178-8d49-ca2d8fb79547.jpg">
-                <div class="card-name">Striped Knit Cardigan (Women)</div>
-                <div class="card-price">₹1699</div>
-                <button class="view-btn">View</button>
-            </div>
+<div class="card" data-price="1499">
+<img src="https://image2url.com/images/1765219357258-31497466-c1cd-42a7-acf8-993fc2014f1c.jpg">
+<div class="card-name">Fluffy Cozy Knit (Women)</div>
+<div class="card-price">₹1299</div>
+<button class="view-btn" onclick="openModal(this)">View</button>
+</div>
 
-            <div class="card" data-price="1499">
-                <img src="https://image2url.com/images/1765224443566-95838921-18d2-447e-8d37-3bc935731260.jpg">
-                <div class="card-name">Winter Wool Sweater (Men)</div>
-                <div class="card-price">₹1499</div>
-                <button class="view-btn">View</button>
-            </div>
+<div class="card" data-price="1399">
+<img src="https://image2url.com/images/1765219402904-b147928a-bd73-4a6e-8eac-73d9ff66d9b0.jpg">
+<div class="card-name">Classic Ribbed Sweater (Men)</div>
+<div class="card-price">₹1399</div>
+<button class="view-btn" onclick="openModal(this)">View</button>
+</div>
 
-            <div class="card" data-price="1899">
-                <img src="https://image2url.com/images/1765224536657-a0dadfc0-e233-437a-8249-d94e56198684.jpg">
-                <div class="card-name">Premium Soft Knit (Women)</div>
-                <div class="card-price">₹1899</div>
-                <button class="view-btn">View</button>
-            </div>
+<div class="card" data-price="999">
+<img src="https://image2url.com/images/1765221039819-9a4b3d36-0edc-4178-8d49-ca2d8fb79547.jpg">
+<div class="card-name">Striped Knit Cardigan (Women)</div>
+<div class="card-price">₹999</div>
+<button class="view-btn" onclick="openModal(this)">View</button>
+</div>
 
-            <div class="card" data-price="1799">
-                <img src="https://i5.walmartimages.com/seo/Men-s-Twisted-Knitted-Turtleneck-Sweater-Ribbed-Thermal-Slim-Fit-Casual-Cable-Knit-Sweater-High-Neck-Pullover-Sweaters-for-Men_3b340df4-399f-4201-9314-13b36a9a545f.addf25771828d6f8948f6e7f611a0950.jpeg">
-                <div class="card-name">High Neck Cable Knit (Men)</div>
-                <div class="card-price">₹1799</div>
-                <button class="view-btn">View</button>
-            </div>
+<div class="card" data-price="1599">
+<img src="https://image2url.com/images/1765224443566-95838921-18d2-447e-8d37-3bc935731260.jpg">
+<div class="card-name">Winter Wool Sweater (Men)</div>
+<div class="card-price">₹1399</div>
+<button class="view-btn" onclick="openModal(this)">View</button>
+</div>
 
-        </div>
-    </div>
+<div class="card" data-price="1399">
+<img src="https://image2url.com/images/1765224536657-a0dadfc0-e233-437a-8249-d94e56198684.jpg">
+<div class="card-name">Premium Soft Knit (Women)</div>
+<div class="card-price">₹1100</div>
+<button class="view-btn" onclick="openModal(this)">View</button>
+</div>
 
+<div class="card" data-price="1799">
+ <img src="https://i5.walmartimages.com/seo/Men-s-Twisted-Knitted-Turtleneck-Sweater-Ribbed-Thermal-Slim-Fit-Casual-Cable-Knit-Sweater-High-Neck-Pullover-Sweaters-for-Men_3b340df4-399f-4201-9314-13b36a9a545f.addf25771828d6f8948f6e7f611a0950.jpeg">
+<div class="card-name">High Neck Cable Knit (Men)</div>
+<div class="card-price">₹1799</div>
+<button class="view-btn" onclick="openModal(this)">View</button>
+</div>
+
+</div>
+</div>
+</div>
+
+<!-- MODAL -->
+<div id="imageModal" onclick="closeModal()">
+<span class="close">✖</span>
+<img id="modalImg">
 </div>
 
 <script>
@@ -403,6 +378,16 @@ function sortProducts(){
     }
 
     products.forEach(p => list.appendChild(p));
+}
+
+function openModal(btn){
+    let img = btn.parentElement.querySelector("img").src;
+    document.getElementById("modalImg").src = img;
+    document.getElementById("imageModal").style.display = "flex";
+}
+
+function closeModal(){
+    document.getElementById("imageModal").style.display = "none";
 }
 </script>
 

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>TrendÉvo – Dresses</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  
   <style>
     :root {
       --bg-page: radial-gradient(circle at top left, #1b2435 0%, #050712 55%, #020309 100%);
@@ -17,17 +17,17 @@
       --radius-lg: 20px;
       --shadow-soft: 0 24px 60px rgba(0, 0, 0, 0.75);
     }
-
+    
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
+      sans-serif;
     }
-
+    
     html { scroll-behavior: smooth; }
-
+    
     body {
       background: var(--bg-page);
       min-height: 100vh;
@@ -38,16 +38,16 @@
       overflow-x: hidden;
       color: #f9fafb;
     }
-
+    
     .app-shell {
       width: 100%;
       min-height: 100vh;
       background: var(--bg-main);
       padding: 32px 40px 40px;
     }
-
+    
     /* NAVBAR */
-
+    
     .nav {
       display: flex;
       align-items: center;
@@ -60,13 +60,13 @@
       backdrop-filter: blur(14px);
       color: #e5e7eb;
     }
-
+    
     .nav-left {
       display: flex;
       gap: 20px;
       align-items: center;
     }
-
+    
     .logo {
       font-weight: 700;
       font-size: 16px;
@@ -74,7 +74,7 @@
       text-transform: uppercase;
       color: #f9fafb;
     }
-
+    
     .search-box {
       background: #0f172acc;
       border-radius: 999px;
@@ -86,7 +86,7 @@
       border: 1px solid #1f2937;
       color: #e5e7eb;
     }
-
+    
     .search-icon {
       width: 26px;
       height: 26px;
@@ -99,7 +99,7 @@
       color: #f3f4f6;
       border: 1px solid #374151;
     }
-
+    
     .search-box input {
       border: none;
       background: transparent;
@@ -108,29 +108,29 @@
       width: 100%;
       color: #e5e7eb;
     }
-
+    
     .search-box input::placeholder {
       color: #6b7280;
     }
-
+    
     .nav-center {
       display: flex;
       gap: 18px;
       font-size: 13px;
       color: #9ca3af;
     }
-
+    
     .nav-center a {
       text-decoration: none;
       color: inherit;
       position: relative;
     }
-
+    
     .nav-center a.active {
       font-weight: 600;
       color: #f9fafb;
     }
-
+    
     .nav-center a.active::after {
       content: "";
       position: absolute;
@@ -141,13 +141,13 @@
       border-radius: 999px;
       background: var(--accent);
     }
-
+    
     .nav-right {
       display: flex;
       align-items: center;
       gap: 10px;
     }
-
+    
     .btn-signout {
       background: transparent;
       color: #f9fafb !important;
@@ -157,15 +157,15 @@
       border: 1px solid #4b5563;
       cursor: pointer;
       transition: background 0.15s ease, border-color 0.15s ease,
-        transform 0.15s ease;
+      transform 0.15s ease;
     }
-
+    
     .btn-signout:hover {
       background: #111827;
       border-color: var(--accent);
       transform: translateY(-1px);
     }
-
+    
     .avatar {
       width: 32px;
       height: 32px;
@@ -173,7 +173,7 @@
       background: radial-gradient(circle at 20% 20%, #fbbf24, #f97316, #111827);
       border: 1px solid #4b5563;
     }
-
+    
     .cart {
       width: 34px;
       height: 34px;
@@ -186,9 +186,9 @@
       font-size: 16px;
       box-shadow: 0 10px 30px rgba(15, 23, 42, 0.7);
     }
-
+    
     /* CATEGORY PILLS */
-
+    
     .pill-row {
       display: flex;
       gap: 10px;
@@ -198,7 +198,7 @@
       font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
       font-size: 14px;
     }
-
+    
     .pill {
       padding: 8px 20px;
       border-radius: 999px;
@@ -209,29 +209,29 @@
       white-space: nowrap;
       color: #e5e7eb;
     }
-
+    
     .pill:hover {
       transform: translateY(-1px);
       border-color: var(--accent);
     }
-
+    
     .pill.active {
       background: #f9fafb;
       color: #111827;
       border-color: #f9fafb;
     }
-
+    
     .pill-row::-webkit-scrollbar { display: none; }
-
+    
     /* PAGE LAYOUT */
-
+    
     .page-sections {
       display: flex;
       flex-direction: column;
       gap: 28px;
       width: 100%;
     }
-
+    
     .card {
       background: radial-gradient(circle at top left, #131826, #050712);
       border-radius: var(--radius-lg);
@@ -242,14 +242,14 @@
       color: #f9fafb;
       border: 1px solid #111827;
     }
-
+    
     .card-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 18px;
     }
-
+    
     .card-title {
       font-size: 25px;
       font-weight: 500;
@@ -258,7 +258,7 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
-
+    
     .card-subtitle {
       white-space: nowrap;
       max-width: none;
@@ -268,7 +268,7 @@
       max-width: 360px;
       line-height: 1.6;
     }
-
+    
     .btn-ghost {
       font-size: 12px;
       padding: 6px 12px;
@@ -278,7 +278,7 @@
       cursor: pointer;
       color: #e5e7eb;
     }
-
+    
     .btn-black {
       background: var(--accent);
       color: #111827;
@@ -290,15 +290,15 @@
       margin-top: 18px;
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
     }
-
+    
     .btn-black:hover {
       transform: translateY(-1px);
       box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85);
       background: var(--accent-soft);
     }
-
+    
     /* HERO */
-
+    
     .card-hero {
       display: grid;
       grid-template-columns: 1.2fr 1.1fr;
@@ -306,7 +306,7 @@
       align-items: center;
       min-height: 320px;
     }
-
+    
     .card-hero-image {
       border-radius: var(--radius-lg);
       background: radial-gradient(circle at top, #111827, #020309);
@@ -314,23 +314,23 @@
       border: 1px solid #111827;
       height: 100%;
     }
-
+    
     .card-hero-image img {
       width: 100%;
       height: 100%;
       object-fit: contain;
       border-radius: var(--radius-lg);
     }
-
+    
     /* 🔹 NEW: HERO STATS (Home section fill) */
-
+    
     .hero-stats {
       display: flex;
       gap: 18px;
       margin-top: 18px;
       flex-wrap: wrap;
     }
-
+    
     .hero-stat {
       padding: 10px 16px;
       border-radius: 14px;
@@ -338,20 +338,20 @@
       border: 1px solid #1f2937;
       min-width: 140px;
     }
-
+    
     .hero-stat h3 {
       font-size: 18px;
       margin-bottom: 4px;
       color: #f9fafb;
     }
-
+    
     .hero-stat span {
       font-size: 12px;
       color: var(--muted);
     }
-
+    
     /* POPULAR */
-
+    
     .popular-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -363,7 +363,7 @@
     @media (max-width: 640px) {
       .popular-grid { grid-template-columns: 1fr; }
     }
-
+    
     .popular-card {
       border-radius: 18px;
       background: #050712;
@@ -375,23 +375,23 @@
       align-items: center;
       border: 1px solid #111827;
     }
-
+    
     .popular-title {
       font-size: 19px;
       font-weight: 400;
       color: #f9fafb;
       text-align: center;
     }
-
+    
     .popular-card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       border-radius: 16px;
     }
-
+    
     /* NEW ARRIVALS – bigger */
-
+    
     .new-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -403,7 +403,7 @@
     @media (max-width: 600px) {
       .new-grid { grid-template-columns: 1fr; }
     }
-
+    
     .new-card {
       border-radius: 18px;
       background: radial-gradient(circle at top left, #151827, #020309);
@@ -416,17 +416,17 @@
       color: #f9fafb;
       min-height: 320px;
     }
-
+    
     .new-card img {
       width: 100%;
       height: 220px;
       border-radius: 16px;
       object-fit: cover;
     }
-
+    
     .new-title { font-size: 18px; font-weight: 500; }
     .new-meta { font-size: 13px; color: var(--muted); }
-
+    
     .price-row {
       display: flex;
       justify-content: space-between;
@@ -434,16 +434,16 @@
       font-size: 13px;
       margin-top: 4px;
     }
-
+    
     .price-row span:last-child {
       font-size: 11px;
       color: #f87171;
     }
-
+    
     .stars { font-size: 12px; color: #facc15; margin-right: 6px; }
-
+    
     /* PACKAGES */
-
+    
     .card-promo {
       display: grid;
       grid-template-columns: 1fr 1.5fr;
@@ -453,7 +453,7 @@
     @media (max-width: 960px) {
       .card-promo { grid-template-columns: 1fr; }
     }
-
+    
     .promo-text h2 {
       font-size: 22px;
       letter-spacing: 0.18em;
@@ -461,14 +461,14 @@
       line-height: 1.4;
       margin-bottom: 10px;
     }
-
+    
     .promo-text p {
       font-size: 16px;
       color: var(--muted);
       margin-bottom: 12px;
       line-height: 1.6;
     }
-
+    
     .packages-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -477,7 +477,7 @@
     @media (max-width: 768px) {
       .packages-grid { grid-template-columns: repeat(2,1fr); }
     }
-
+    
     .package-card {
       background: radial-gradient(circle at top, #111827, #020309);
       border-radius: 18px;
@@ -489,24 +489,24 @@
       box-shadow: 0 10px 26px rgba(0, 0, 0, 0.7);
       min-height: 250px;
     }
-
+    
     .package-card img {
       width: 100%;
       height: 190px;
       object-fit: cover;
       border-radius: 16px;
     }
-
+    
     .package-title { font-size: 19px; font-weight: 500; }
     .package-meta { font-size: 15px; color: var(--muted); }
-
+    
     /* INSIGHT LOUNGE – LEFT BOX, RIGHT CONTENT */
-
+    
     #insight-section.card {
       padding: 40px 42px;
       height: 500px;
     }
-
+    
     .insight-layout {
       display: grid;
       grid-template-columns: 1.1fr 1.2fr;
@@ -516,7 +516,7 @@
     @media (max-width: 900px) {
       .insight-layout { grid-template-columns: 1fr; }
     }
-
+    
     .insight-heading {
       align-content: center;
       font-size: 22px;
@@ -524,7 +524,7 @@
       text-transform: uppercase;
       margin-bottom: 16px;
     }
-
+    
     .insight-text {
       align-content: end;
       font-size: 18px;
@@ -533,7 +533,7 @@
       margin-bottom: 10px;
       max-width: 420px;
     }
-
+    
     .insight-btn {
       display: inline-block;
       margin-top: 20px;
@@ -545,11 +545,27 @@
       color: var(--accent-soft);
       cursor: pointer;
     }
-
+    
     .insight-btn:hover {
       background: #111827;
     }
-
+    
+    .Thrift-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 26px;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      font-size: 13px;
+      background: transparent;
+      color: var(--accent-soft);
+      cursor: pointer;
+    }
+    
+    .Thrift-btn:hover {
+      background: #111827;
+    }
+    
     .dash-card {
       width: 560px;
       height: 400px;
@@ -562,26 +578,26 @@
       overflow: hidden;
       box-shadow: 0 0 40px rgba(243, 196, 107, 0.6);
       border: 1px solid rgba(243, 196, 107, 0.55);
-       background-image: url("./images/INSIGHT.jpg");
+      background-image: url("./images/INSIGHT.jpg");
       background-size: cover;
       background-position: center;
     }
-
+    
     .dash-card:hover {
       transform: scale(1.03);
       box-shadow: 0 0 35px rgba(243, 196, 107, 0.55);
       filter: brightness(1.05);
     }
-
+    
     /* 🔹 NEW: COLOR PALETTE SECTION */
-
+    
     .palette-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 16px;
       margin-top: 20px;
     }
-
+    
     .palette-card {
       background: #050712;
       border-radius: 16px;
@@ -591,31 +607,31 @@
       flex-direction: column;
       gap: 8px;
     }
-
+    
     .palette-color-box {
       height: 60px;
       border-radius: 12px;
     }
-
+    
     .palette-label {
       font-size: 13px;
       color: var(--muted);
     }
-
+    
     .palette-name {
       font-size: 15px;
       font-weight: 500;
     }
-
+    
     @media (max-width: 900px) {
       .palette-grid { grid-template-columns: repeat(2,1fr); }
     }
     @media (max-width: 600px) {
       .palette-grid { grid-template-columns: 1fr; }
     }
-
+    
     /* MODAL */
-
+    
     #dashModal {
       display: none;
       position: fixed;
@@ -627,7 +643,7 @@
       backdrop-filter: blur(12px);
       background: rgba(2, 3, 9, 0.85);
     }
-
+    
     #dashModalContent {
       background: radial-gradient(circle at top left, #131826, #050712);
       width: 90%;
@@ -639,7 +655,7 @@
       border: 1px solid #111827;
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.9);
     }
-
+    
     .closeBtn {
       color: var(--accent);
       font-size: 26px;
@@ -648,12 +664,12 @@
       padding: 10px 18px;
       cursor: pointer;
     }
-
+    
     .switchBtns {
       text-align: center;
       margin: 12px 0 14px;
     }
-
+    
     .switchBtns button {
       background: #111827;
       color: #f9fafb;
@@ -664,74 +680,216 @@
       font-size: 14px;
       margin: 0 8px;
     }
-
+    
     iframe#dashFrame {
       width: 100%;
       height: 650px;
       border: none;
       border-top: 1px solid #111827;
     }
-
+    
     /* CONTACT LAST */
     #contact { margin-bottom: 0; }
+    
+    /* ⭐ Floating Button */
+    .chat-toggle{
+      position:fixed;
+      bottom:20px;
+      right:20px;
+      width:60px;
+      height:60px;
+      background:black;
+      color:white;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:26px;
+      cursor:pointer;
+      box-shadow:0 10px 25px rgba(0,0,0,0.3);
+      z-index:999;
+    }
+    
+    /* ⭐ Chatbot Hidden Initially */
+    .chatbot{
+      position:fixed;
+      bottom:90px;
+      right:20px;
+      width:320px;
+      
+      border:1px solid rgba(243,196,107,0.3);
+      background:linear-gradient(145deg,#0c1019,#0f172a);
+      border-radius:14px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.25);
+      display:none;
+      flex-direction:column;
+      overflow:hidden;
+      z-index:999;
+    }
+    
+    .chat-header{
+      
+      background:linear-gradient(135deg,#000,#111);
+      color:#f3c46b;
+      font-weight:600;
+      letter-spacing:0.5px;
+      padding:12px;
+      display:flex;
+      justify-content:space-between;
+    }
+    
+    .close-btn{
+      cursor:pointer;
+    }
+    
+    .chat-body{
+      height:260px;
+      overflow-y:auto;
+      padding:10px;
+    }
+    
+    .user-msg{
+      background:#d1e7ff;
+      padding:8px;
+      border-radius:8px;
+      margin:6px;
+      text-align:right;
+    }
+    .bot-msg, .user-msg{
+      animation:fadeUp 0.3s ease;
+    }
+    
+    @keyframes fadeUp{
+      from{
+        transform:translateY(10px);
+        opacity:0;
+      }
+      to{
+        transform:translateY(0);
+        opacity:1;
+      }
+    }
+    
+    .bot-msg{
+      background:#f1f1f1;
+      padding:8px;
+      border-radius:8px;
+      margin:6px;
+    }
+    
+    .chat-input{
+      display:flex;
+      align-items:center;
+    }
+    
+    .chat-input input{
+      flex:1;
+      padding:12px;
+      border:none;
+      outline:none;
+      border-radius:10px 0 0 10px;
+    }
+    
+    .chat-input button{
+      padding:12px;
+      border-radius:0 10px 10px 0;
+    }
+    
+    .suggestions button{
+      margin:4px;
+      padding:6px;
+      border:none;
+      background:#eee;
+      border-radius:6px;
+      cursor:pointer;
+    }
+    .typing{
+      opacity:0.7;
+      font-style:italic;
+      animation:pulse 1s infinite;
+    }
+    
+    @keyframes pulse{
+      0%{opacity:0.3}
+      50%{opacity:1}
+      100%{opacity:0.3}
+    }
+    
+    .chatbot{
+      background:#0c1019;
+      color:white;
+      border:1px solid rgba(243,196,107,0.4);
+      backdrop-filter:blur(20px);
+    }
+    
+    .bot-msg{
+      background:#111827;
+      border:1px solid rgba(243,196,107,0.2);
+    }
+    
+    .user-msg{
+      background:linear-gradient(135deg,#f3c46b,#f7d58e);
+      color:black;
+    }
   </style>
 </head>
 <body>
-
+  
   <div class="app-shell" id="top">
     <!-- NAVBAR -->
     <header class="nav">
       <div class="nav-left">
         <div class="logo">TrendÉvo</div>
-
+        
         <div class="search-box">
           <div class="search-icon">⌕</div>
           <input type="text" placeholder="Search" />
         </div>
       </div>
-
+      
       <nav class="nav-center">
         <a href="#top" class="active"><h3>Home</h3></a>
         <a href="#insight-section"><h3>Insight Lounge</h3></a>
+        <a href="/frontend/thrift.html"><h3>Thrift Marketplace</h3></a>
         <a href="#new-arrivals"><h3>New Arrivals</h3></a>
         <a href="#packages"><h3>Packages</h3></a>
         <!-- 🔹 NEW: COLOR PALETTES LINK -->
         <a href="#palettes"><h3>Color Palettes</h3></a>
         <a href="#contact"><h3>Contact Us</h3></a>
       </nav>
-
+      
       <div class="nav-right">
         <button class="btn-signout">Sign Out</button>
         <div class="avatar"></div>
         <div class="cart">🛒</div>
       </div>
     </header>
-
+    
     <!-- CATEGORY PILLS -->
-<section class="pill-row">
-  <button class="pill active"><h4>Home</h4></button>
-  <button class="pill active" onclick="location.href='/frontend/dresses.html'">
-    <h4>Dresses</h4>
-  </button>
-
-  <button class="pill" onclick="location.href='/frontend/upperwear.html'">
-    <h4>Upperwear</h4>
-  </button>
-
-  <button class="pill" onclick="location.href='/frontend/denims.html'">
-    <h4>Denims</h4>
-  </button>
-
-  <button class="pill" onclick="location.href='/frontend/jackets.html'">
-    <h4>Jackets & Coats</h4>
-  </button>
-
-  <button class="pill" onclick="location.href='/frontend/knitwear.html'">
-    <h4>Knitwear</h4>
-  </button>
-
-</section>
-
+    <section class="pill-row">
+      <button class="pill active"><h4>Home</h4></button>
+      <button class="pill active" onclick="location.href='/frontend/dresses.html'">
+        <h4>Dresses</h4>
+      </button>
+      
+      <button class="pill" onclick="location.href='/frontend/upperwear.html'">
+        <h4>Upperwear</h4>
+      </button>
+      
+      <button class="pill" onclick="location.href='/frontend/denims.html'">
+        <h4>Denims</h4>
+      </button>
+      
+      <button class="pill" onclick="location.href='/frontend/jackets.html'">
+        <h4>Jackets & Coats</h4>
+      </button>
+      
+      <button class="pill" onclick="location.href='/frontend/knitwear.html'">
+        <h4>Knitwear</h4>
+      </button>
+      
+    </section>
+    
     <div class="page-sections">
       <!-- HERO -->
       <section class="card" id="home">
@@ -752,7 +910,7 @@
             <p class="card-subtitle">
               <i>Own every moment in trend-defining fashion.</i>
             </p>
-
+            
             <!-- 🔹 NEW: HERO STATS ROW -->
             <div class="hero-stats">
               <div class="hero-stat">
@@ -768,7 +926,7 @@
                 <span>Live style intelligence</span>
               </div>
             </div>
-
+            
             <button class="btn-black"><h3>Buy Now</h3></button>
           </div>
           <div class="card-hero-image">
@@ -776,7 +934,7 @@
           </div>
         </div>
       </section>
-
+      
       <!-- POPULAR ITEMS -->
       <section class="card">
         <div class="card-header">
@@ -802,11 +960,11 @@
           </div>
         </div>
       </section>
-            <!-- INSIGHT LOUNGE: LEFT BOX, RIGHT CONTENT -->
+      <!-- INSIGHT LOUNGE: LEFT BOX, RIGHT CONTENT -->
       <section class="card" id="insight-section">
         <div class="insight-layout">
           <div onclick="openDashboardModal()" class="dash-card"></div>
-
+          
           <div>
             <h2 class="insight-heading">FASHION TREND FORECASTING WITH TRENDÉVO</h2>
             <p class="insight-text">
@@ -826,14 +984,14 @@
           </div>
         </div>
       </section>
-
+      
       <!-- NEW ARRIVALS (bigger) -->
       <section class="card" id="new-arrivals">
         <div class="card-header">
           <div class="card-title">NEW ARRIVALS</div>
           <button class="btn-ghost">View all</button>
         </div>
-
+        
         <div class="new-grid">
           <article class="new-card">
             <img src="https://thumbs.dreamstime.com/b/woman-wearing-stunning-dress-o-sailor-stands-out-vibrant-combination-red-green-dress-features-fluid-292001052.jpg" alt="Dress 1" />
@@ -841,35 +999,35 @@
             <div class="new-meta"><span class="stars">★★★★★</span>(4.1k) Customer Reviews</div>
             <div class="price-row"><span>₹ 1100</span><span>In Stock</span></div>
           </article>
-
+          
           <article class="new-card">
             <img src="https://lureurban.b-cdn.net/cache/catalog/banners/coats-1920x600.jpg" alt="Dress 2" />
             <div class="new-title">Coats</div>
             <div class="new-meta"><span class="stars">★★★★☆</span>(3.2k) Customer Reviews</div>
             <div class="price-row"><span>₹ 1050</span><span>In Stock</span></div>
           </article>
-
+          
           <article class="new-card">
             <img src="https://img.freepik.com/premium-photo/female-denim-jackets-hangers-defocused-store-background-fashion-concept_543278-1322.jpg?w=1380" alt="Denims" />
             <div class="new-title">Denims</div>
             <div class="new-meta"><span class="stars">★★★★★</span>(2.8k) Customer Reviews</div>
             <div class="price-row"><span>₹ 1999</span><span>In Stock</span></div>
           </article>
-
+          
           <article class="new-card">
             <img src="https://images.pexels.com/photos/24741994/pexels-photo-24741994/free-photo-of-group-of-well-dressed-friends-waving-at-the-camera.jpeg" alt="Party gown" />
             <div class="new-title">Party Gown</div>
             <div class="new-meta"><span class="stars">★★★★★</span>(1.9k) Customer Reviews</div>
             <div class="price-row"><span>₹ 1850</span><span>In Stock</span></div>
           </article>
-
+          
           <article class="new-card">
             <img src="https://media.istockphoto.com/id/1187809258/photo/everyone-has-to-wait-their-turn.jpg?s=612x612&w=0&k=20&c=IwuCEajX1rHwtrdkTmlDk-d46avxK0azbdjv0E0FlaI=" alt="Evening dress" />
             <div class="new-title">Pants & Trousers</div>
             <div class="new-meta"><span class="stars">★★★★☆</span>(1.4k) Customer Reviews</div>
             <div class="price-row"><span>₹ 1350</span><span>In Stock</span></div>
           </article>
-
+          
           <article class="new-card">
             <img src="https://m.media-amazon.com/images/S/aplus-media-library-service-media/e3522e02-4740-4af7-a7e7-5b4fb4ada8a4.__CR0,0,600,450_PT0_SX600_V1___.jpg" alt="Bodycon dress" />
             <div class="new-title">Bodycon Dress</div>
@@ -878,7 +1036,7 @@
           </article>
         </div>
       </section>
-
+      
       <!-- PACKAGES (UPDATED CONTENT) -->
       <section class="card card-promo" id="packages">
         <div class="promo-text">
@@ -896,20 +1054,20 @@
           </p>
           <button class="btn-black"><h3>Explore Packages</h3></button>
         </div>
-
+        
         <div class="packages-grid">
           <div class="package-card">
             <img src="https://img.freepik.com/free-photo/portrait-siblings-outdoors-brothers-day-celebration_23-2150266817.jpg?semt=ais_se_enriched&w=740&q=80" alt="Casual day package" />
             <div class="package-title">Casual Day Set</div>
             <div class="package-meta">Oversized tee, denims & sneakers.</div>
           </div>
-
+          
           <div class="package-card">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSU0krUDrXhPy5G33Pi-Hsk7nupGSmYVK31bQ&s" alt="Office chic package" />
             <div class="package-title">Office Chic Combo</div>
             <div class="package-meta">Blazer, tailored pants & top.</div>
           </div>
-
+          
           <div class="package-card">
             <img src="https://media.istockphoto.com/id/1040562978/photo/young-attractive-women-celebrating-a-party-drinking-champagne-and-dancing.jpg?s=612x612&w=0&k=20&c=M1I8g0ylX5DRGogbJZK2yPmevM02phG-gMcZ7qBzkzw=" alt="Party night package" />
             <div class="package-title">Party Night Pack</div>
@@ -917,7 +1075,7 @@
           </div>
         </div>
       </section>
-
+      
       <!-- 🔹 NEW: COLOR PALETTES SECTION -->
       <section class="card" id="palettes">
         <div class="card-header">
@@ -927,50 +1085,50 @@
           Our signature dark luxe palette blends deep midnight tones with warm gold highlights –
           perfect for premium fashion & analytics dashboards.
         </p>
-
+        
         <div class="palette-grid">
           <div class="palette-card">
             <div class="palette-color-box" style="background:#992e8d;"></div>
             <div class="palette-name">Dark Magenta</div>
             <div class="palette-label">#050712 – Base background</div>
           </div>
-
+          
           <div class="palette-card">
             <div class="palette-color-box" style="background:#76a247;"></div>
             <div class="palette-name">Olive</div>
             <div class="palette-label">#0C1019 – Cards & surfaces</div>
           </div>
-
+          
           <div class="palette-card">
             <div class="palette-color-box" style="background:#1B2435;"></div>
             <div class="palette-name">Shadow Blue</div>
             <div class="palette-label">#1B2435 – Soft gradients</div>
           </div>
-
+          
           <div class="palette-card">
             <div class="palette-color-box" style="background:#F3C46B;"></div>
             <div class="palette-name">Champagne Gold</div>
             <div class="palette-label">#F3C46B – Primary accent</div>
           </div>
-
+          
           <div class="palette-card">
             <div class="palette-color-box" style="background:#F7D58E;"></div>
             <div class="palette-name">Luxe Soft Gold</div>
             <div class="palette-label">#F7D58E – Hover & glow</div>
           </div>
-
+          
           <div class="palette-card">
             <div class="palette-color-box" style="background:#F9FAFB;"></div>
             <div class="palette-name">Pearl White</div>
             <div class="palette-label">#F9FAFB – Headings & text</div>
           </div>
-
+          
           <div class="palette-card">
             <div class="palette-color-box" style="background:#9CA3B9;"></div>
             <div class="palette-name">Muted Mist</div>
             <div class="palette-label">#9CA3B9 – Subtext / labels</div>
           </div>
-
+          
           <div class="palette-card">
             <div class="palette-color-box" style="background:#F87171;"></div>
             <div class="palette-name">Red Glow</div>
@@ -978,7 +1136,7 @@
           </div>
         </div>
       </section>
-
+      
       <!-- CONTACT -->
       <section class="card" id="contact">
         <div class="card-header">
@@ -994,7 +1152,7 @@
         </p>
       </section>
     </div>
-
+    
     <!-- INSIGHT MODAL -->
     <div id="dashModal">
       <div id="dashModalContent">
@@ -1007,7 +1165,7 @@
       </div>
     </div>
   </div>
-
+  
   <script>
     const pills = document.querySelectorAll(".pill");
     pills.forEach((pill) => {
@@ -1016,7 +1174,7 @@
         pill.classList.add("active");
       });
     });
-
+    
     function openDashboardModal() {
       document.getElementById("dashModal").style.display = "block";
       loadPage1();
@@ -1024,15 +1182,247 @@
     function closeDashboardModal() {
       document.getElementById("dashModal").style.display = "none";
     }
-
+    
     function loadPage1() {
       document.getElementById("dashFrame").src =
-        "https://app.powerbi.com/view?r=eyJrIjoiNDQ5NTRjNzUtOWZkOC00NWViLThlNjQtOTZjNDIyYmNmMjk4IiwidCI6Ijg2Zjc0ZmFiLTlhZDctNGUzOC1hYjA2LTExNDhlZWFmZjgwMyJ9&pageName=c7ab0f1b8609a54a1d0a";
+      "https://app.powerbi.com/view?r=eyJrIjoiNDQ5NTRjNzUtOWZkOC00NWViLThlNjQtOTZjNDIyYmNmMjk4IiwidCI6Ijg2Zjc0ZmFiLTlhZDctNGUzOC1hYjA2LTExNDhlZWFmZjgwMyJ9&pageName=c7ab0f1b8609a54a1d0a";
     }
     function loadPage2() {
       document.getElementById("dashFrame").src =
-        "https://app.powerbi.com/view?r=eyJrIjoiNDQ5NTRjNzUtOWZkOC00NWViLThlNjQtOTZjNDIyYmNmMjk4IiwidCI6Ijg2Zjc0ZmFiLTlhZDctNGUzOC1hYjA2LTExNDhlZWFmZjgwMyJ9&pageName=bff60c9fe741320e3a0c";
+      "https://app.powerbi.com/view?r=eyJrIjoiNDQ5NTRjNzUtOWZkOC00NWViLThlNjQtOTZjNDIyYmNmMjk4IiwidCI6Ijg2Zjc0ZmFiLTlhZDctNGUzOC1hYjA2LTExNDhlZWFmZjgwMyJ9&pageName=bff60c9fe741320e3a0c";
     }
   </script>
+  
+  
+  <script>
+    
+    async function sendMessage(){
+      
+      let message = document.getElementById("msg").value;
+      
+      const chatbox = document.getElementById("chatbox");
+      document.getElementById("chatbox").innerHTML +=
+      `<p class="user-msg">${message}</p>`;
+      
+      chatbox.innerHTML += `<p class="bot-msg typing">ARIA is styling your look...</p>`;
+      chatbox.scrollTop = chatbox.scrollHeight;
+      
+      let res = await fetch("https://api.anthropic.com/v1/messages",{        method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body: JSON.stringify({message})
+    });
+    
+    let data = await res.json();
+    
+    document.querySelector(".typing").remove();
+    
+    chatbox.innerHTML += `<p class="bot-msg">${data.reply}</p>`;
+    chatbox.scrollTop = chatbox.scrollHeight;
+    
+    document.getElementById("msg").value="";
+  }
+  
+  function quickAsk(text){
+    document.getElementById("msg").value=text;
+    sendMessage();
+  }
+  function toggleChat(){
+    let box = document.getElementById("chatbotBox");
+    
+    if(box.style.display === "block"){
+      box.style.display = "none";
+    }else{
+      box.style.display = "block";
+    }
+  }
+  function clearChat(){
+    document.getElementById("chatbox").innerHTML="";
+  }
+  
+</script>
+<script>
+  
+  let conversation = [];
+  
+  function getTime(){
+    return new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+  }
+  
+  function toggleChat(){
+    const box = document.getElementById("chatbotBox");
+    box.style.display = box.style.display === "block" ? "none" : "block";
+  }
+  
+  function clearChat(){
+    document.getElementById("chatbox").innerHTML = "";
+    conversation = [];
+  }
+  
+  function quickAsk(text){
+    document.getElementById("msg").value = text;
+    sendMessage();
+  }
+  
+  async function sendMessage(){
+    
+    const input = document.getElementById("msg");
+    const apiKey = document.getElementById("apiKey").value.trim();
+    const chatbox = document.getElementById("chatbox");
+    
+    let message = input.value.trim();
+    if(!message) return;
+    
+    if(!apiKey){
+      document.getElementById("chatbox").innerHTML += `
+    <div class="bot-msg">
+      ⚠️ Please enter your Claude API key above to start styling ✨
+      <div class="time">${getTime()}</div>
+    </div>`;
+      return;
+    }
+    
+    // user bubble
+    chatbox.innerHTML += `
+    <div class="user-msg">
+      ${message}
+      <div class="time">${getTime()}</div>
+    </div>
+  `;
+    
+    chatbox.scrollTop = chatbox.scrollHeight;
+    
+    conversation.push({
+      role:"user",
+      content:[{type:"text",text:message}]
+    });
+    
+    input.value = "";
+    
+    // typing loader
+    chatbox.innerHTML += `<div class="bot-msg typing">ARIA is styling your response...</div>`;
+    chatbox.scrollTop = chatbox.scrollHeight;
+    
+    try{
+      
+      let res = await fetch("http://127.0.0.1:5000/api/chat",{
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json",
+        },
+        body: JSON.stringify({
+          model:"claude-sonnet-4-20250514",
+          max_tokens:800,
+          system:`You are ARIA — a luxury world-class AI fashion stylist.
+
+If user asks trends → respond in sections:
+• Clothing Trends
+• Color Palette
+• Accessories
+• Footwear
+• Celebrity/Runway Inspiration
+
+If user mentions clothing item → ask:
+1. Occasion
+2. Venue
+3. Time of day
+
+Then build full outfit including styling tips.`,
+          
+          messages: conversation
+        })
+      });
+      
+      let data = await res.json();
+      
+      document.querySelector(".typing")?.remove();
+      
+      let reply = data.content?.[0]?.text || "Sorry… ARIA couldn't style this.";
+      
+      conversation.push({
+        role:"assistant",
+        content:[{type:"text",text:reply}]
+      });
+      
+      chatbox.innerHTML += `
+      <div class="bot-msg">
+        ✨ ${reply}
+        <div class="time">${getTime()}</div>
+      </div>
+    `;
+      
+      chatbox.scrollTop = chatbox.scrollHeight;
+      
+    }catch(err){
+      
+      document.querySelector(".typing")?.remove();
+      
+      chatbox.innerHTML += `
+      <div class="bot-msg">
+        ⚠️ Network or API error. Please check your key.
+        <div class="time">${getTime()}</div>
+      </div>
+    `;
+    }
+    
+  }
+  
+  // ENTER key support
+  document.addEventListener("keydown",function(e){
+    if(e.key === "Enter"){
+      sendMessage();
+    }
+  });
+  window.onload = () => {
+    document.getElementById("welcomeTime").innerText = getTime();
+  };
+  
+</script>
+
+
+<!-- ⭐ Floating Button -->
+<div class="chat-toggle" onclick="toggleChat()">💬</div>
+
+<!-- ⭐ Premium ARIA Chatbot -->
+<div id="chatbotBox" class="chatbot">
+  
+  <div class="chat-header">
+    ARIA – Your AI Style Assistant ✨
+    <div>
+      <button onclick="clearChat()">Clear</button>
+      <span class="close-btn" onclick="toggleChat()">✖</span>
+    </div>
+  </div>
+  
+  <div style="padding:8px;">
+    <input id="apiKey" placeholder="Enter Claude API Key"
+    style="width:100%;padding:8px;border-radius:8px;border:none;">
+  </div>
+  
+  <div id="chatbox" class="chat-body">
+    
+    <div class="bot-msg">
+      Hello dear fashion enthusiast 👋✨<br>
+      I am ARIA — your luxury AI stylist.<br>
+      Ask me about trends, outfits or styling tips.
+      <div class="time" id="welcomeTime"></div>    </div>
+      
+      <div class="suggestions">
+        <button onclick="quickAsk('🔥 What is trending now?')">🔥 Trending</button>
+        <button onclick="quickAsk('☀️ Summer 2026 trends')">☀️ Summer</button>
+        <button onclick="quickAsk('👗 Help me build an outfit')">👗 Outfit</button>
+        <button onclick="quickAsk('🎨 Color combinations')">🎨 Colors</button>
+        <button onclick="quickAsk('👠 Accessory guide')">👠 Accessories</button>
+      </div>
+      
+    </div>
+    
+    <div class="chat-input">
+      <input id="msg" placeholder="Ask ARIA anything..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+    
+  </div>
 </body>
 </html>

@@ -16,15 +16,15 @@
       --input-border: rgba(255,255,255,0.06);
       --label-width: 90px; /* fixed label column width */
     }
-
+    
     /* page / background */
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
     body{
       font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
       background:
-        linear-gradient(120deg, rgba(6,7,10,0.65), rgba(10,12,15,0.72)),
-        url("images/photorunway.jpg") center/cover no-repeat fixed;
+      linear-gradient(120deg, rgba(6,7,10,0.65), rgba(10,12,15,0.72)),
+      url("images/photorunway.jpg") center/cover no-repeat fixed;
       min-height:100vh;
       display:flex;
       align-items:center;
@@ -32,7 +32,7 @@
       padding:24px;
       color:var(--accent);
     }
-
+    
     /* Card */
     .card{
       width:500px;               /* EXACT width you wanted */
@@ -46,7 +46,7 @@
       flex-direction:column;
       gap:18px;
     }
-
+    
     /* Brand row: avatar + title */
     .brand {
       display:flex;
@@ -73,14 +73,14 @@
       letter-spacing:0.02em;
     }
     .brand .sub { font-size:13px; color: var(--muted); margin-top:4px; }
-
+    
     .lead {
       color: var(--muted);
       font-size:14px;
       line-height:1.5;
       margin-top:6px;
     }
-
+    
     /* Form layout: two-column grid (label + control) */
     form {
       margin-top:6px;
@@ -90,21 +90,21 @@
       column-gap:18px;
       align-items:center;
     }
-
+    
     label {
       font-size:14px;
       color: var(--muted);
       justify-self:start;
       align-self:center;
     }
-
+    
     .control {
       width:100%;
       display:flex;
       align-items:center;
       gap:12px;
     }
-
+    
     input[type="email"],
     input[type="password"],
     input[type="text"] {
@@ -118,15 +118,15 @@
       outline:none;
       transition:box-shadow .15s ease, transform .12s ease, border-color .12s ease;
     }
-
+    
     input::placeholder { color: rgba(255,255,255,0.35); }
-
+    
     input:focus {
       border-color: rgba(255,255,255,0.22);
       box-shadow: 0 6px 18px rgba(0,0,0,0.45), 0 0 8px rgba(255,255,255,0.03) inset;
       transform: translateY(-1px);
     }
-
+    
     /* Actions row: keep label empty on left to align with inputs */
     .actions-row {
       grid-column: 1 / -1; /* full width row */
@@ -136,9 +136,9 @@
       gap:12px;
       margin-top:4px;
     }
-
+    
     .create-link { color:var(--muted); text-decoration:none; font-size:14px; }
-
+    
     /* Sign-in button style */
     .btn {
       padding:10px 18px;
@@ -152,7 +152,7 @@
       transition: transform .12s ease, box-shadow .12s ease;
     }
     .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.45); }
-
+    
     /* footer small text centered */
     .card-footer {
       margin-top:6px;
@@ -161,7 +161,7 @@
       color:var(--muted);
       grid-column: 1 / -1;
     }
-
+    
     /* small responsive tweak */
     @media (max-width:520px) {
       .card { width:94%; padding:20px; }
@@ -181,100 +181,125 @@
         <div class="sub">Sign in</div>
       </div>
     </div>
-
+    
     <div class="lead">Sign in to access your trend reports and workspace.</div>
-
+    
     <form id="loginForm" onsubmit="return handleLogin(event)">
       <label for="email">Email</label>
       <div class="control">
         <input id="email" type="email" required placeholder="Enter Email" />
       </div>
-
+      
       <label for="password">Password</label>
       <div class="control">
         <input id="password" type="password" required minlength="6" placeholder="Enter Password" />
       </div>
-
+      
       <div class="actions-row">
         <a class="create-link" href="signup.html">Create account</a>
         <button class="btn" type="submit">Sign in</button>
       </div>
-
+      
       <div class="card-footer">By signing in you agree to our Terms & Privacy.</div>
     </form>
   </div>
-
+  
   <!-- REAL LOGIN CODE (Uses Flask backend) -->
   <!-- <script>
     async function handleLogin(e) {
+    e.preventDefault();
+    
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    
+    if (!email || password.length < 6) {
+    alert("Enter valid credentials (password min 6 chars).");
+    return false;
+    }
+    
+    try {
+    const res = await fetch("http://127.0.0.1:5000/api/auth/login", {
+    method: "POST",
+    credentials: "include",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password })
+    });
+    
+    const data = await res.json();
+    
+    if (!res.ok) {
+    alert(data.message || "Login failed");
+    return false;
+    }
+    
+    alert("Login successful!");
+    window.location.href = "shop.html";
+    
+    return false;
+    
+    } catch (err) {
+    alert("Network error: " + err.message);
+    return false;
+    }
+    }
+  </script> -->
+  <script>
+    async function handleLogin(e){
       e.preventDefault();
-
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value;
-
-      if (!email || password.length < 6) {
-        alert("Enter valid credentials (password min 6 chars).");
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      
+      if(!email || password.length < 6){
+        alert('Enter valid credentials (password min 6 chars)');
         return false;
       }
-
+      
       try {
         const res = await fetch("http://127.0.0.1:5000/api/auth/login", {
           method: "POST",
           credentials: "include",
-          headers: { "Content-Type": "application/json" },
+          headers: {"Content-Type":"application/json"},
           body: JSON.stringify({ email, password })
         });
-
         const data = await res.json();
-
-        if (!res.ok) {
+        if(!res.ok){
           alert(data.message || "Login failed");
           return false;
         }
-
-        alert("Login successful!");
-        window.location.href = "shop.html";
-
+        localStorage.setItem("access_token", data.access_token);
+        localStorage.setItem("refresh_token", data.refresh_token);
+        localStorage.setItem("role", data.role);
+        // success -> ask backend to serve the shop page
+        window.location.href = "http://127.0.0.1:5000/shop";
         return false;
-
-      } catch (err) {
+      } catch(err) {
         alert("Network error: " + err.message);
         return false;
       }
     }
-  </script> -->
-  <script>
-async function handleLogin(e){
-  e.preventDefault();
-  const email = document.getElementById('email').value.trim();
-  const password = document.getElementById('password').value;
-
-  if(!email || password.length < 6){
-    alert('Enter valid credentials (password min 6 chars)');
-    return false;
-  }
-
-  try {
-    const res = await fetch("http://127.0.0.1:5000/api/auth/login", {
-      method: "POST",
-      credentials: "include",
-      headers: {"Content-Type":"application/json"},
-      body: JSON.stringify({ email, password })
-    });
-    const data = await res.json();
-    if(!res.ok){
-      alert(data.message || "Login failed");
-      return false;
-    }
-    // success -> ask backend to serve the shop page
-    window.location.href = "http://127.0.0.1:5000/shop";
-    return false;
-  } catch(err) {
-    alert("Network error: " + err.message);
-    return false;
-  }
-}
-</script>
-
-</body>
-</html>
+    async function refreshToken() {
+      const refresh_token = localStorage.getItem("refresh_token");
+      
+      const res = await fetch("http://127.0.0.1:5000/api/auth/refresh", {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify({ refresh_token })
+      });
+      
+      const data = await res.json();
+      window.location.href = "http://127.0.0.1:5000/shop";    }
+      
+      async function checkAuth(requiredRole) {
+        const res = await fetch("http://127.0.0.1:5000/api/admin/dashboard", {
+          credentials: "include"
+        });
+        
+        if (!res.ok) {
+          window.location.href = "/login.html";
+        }
+      }
+    </script>
+    
+  </body>
+  </html>
+  

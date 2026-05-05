@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Verify Email</title>
+
+<style>
+body{
+  font-family: Inter;
+  background: linear-gradient(120deg,#0b0c10,#1f2833);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  color:white;
+}
+
+.card{
+  width:400px;
+  padding:30px;
+  border-radius:12px;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  box-shadow:0 10px 40px rgba(0,0,0,0.5);
+}
+
+input{
+  width:100%;
+  padding:10px;
+  margin:10px 0;
+  border-radius:8px;
+  border:none;
+}
+
+button{
+  padding:10px;
+  width:100%;
+  border:none;
+  border-radius:20px;
+  background:white;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+<h2>Verify Email</h2>
+
+<input id="email" readonly />
+<input id="code" placeholder="Enter OTP" />
+
+<button onclick="verify()">Verify</button>
+<button onclick="resend()">Resend OTP</button>
+
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+document.getElementById("email").value = params.get("email");
+
+async function verify(){
+  const email = document.getElementById("email").value;
+  const code = document.getElementById("code").value;
+
+  const res = await fetch("/api/auth/verify", {
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({email, code})
+  });
+
+  const data = await res.json();
+
+  if(res.ok){
+    alert("Verified!");
+    window.location.href="login.html";
+  } else {
+    alert(data.message);
+  }
+}
+
+async function resend(){
+  const email = document.getElementById("email").value;
+
+  const res = await fetch("/api/auth/resend-otp", {
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({email})
+  });
+
+  const data = await res.json();
+  alert(data.message);
+}
+</script>
+
+</body>
+</html>

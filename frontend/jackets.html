@@ -18,17 +18,11 @@
     --shadow-soft: 0 22px 60px rgba(0,0,0,0.8);
 }
 
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-    font-family:'Poppins', sans-serif;
-}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif;}
 
 body{
     background:var(--bg-page);
     color:#f9fafb;
-    min-height:100vh;
 }
 
 /* Layout */
@@ -36,20 +30,20 @@ body{
     display:flex;
     width:100%;
     padding:26px 32px;
-    gap:30px;
+    gap:28px;
 }
 
-/* Sidebar */
+/* SIDEBAR */
 .sidebar{
     width:270px;
     background:var(--sidebar-bg);
     padding:40px 40px 50px;
     border-radius:var(--radius-lg);
-    height:fit-content;
     box-shadow:var(--shadow-soft);
-    border:1px solid var(--border-subtle);
+    border:1px solid #111827;
     position:sticky;
     top:80px;
+    align-self:flex-start;
 }
 
 .sidebar h2{
@@ -89,32 +83,24 @@ body{
     padding:6px 8px;
     border-radius:10px;
     cursor:pointer;
-    transition:0.18s ease;
-}
-
-.sidebar label:hover{
-    background:#0f172a;
-    color:#e5e7eb;
 }
 
 .sidebar input[type="checkbox"]{
     width:15px;
     height:15px;
     accent-color:var(--accent);
-    cursor:pointer;
 }
 
-/* RIGHT GRID */
+/* RIGHT SIDE */
 .grid{
     flex:1;
 }
 
 .grid-title{
     font-size:26px;
-    margin-bottom:6px;
     letter-spacing:.18em;
     text-transform:uppercase;
-    color:#f9fafb;
+    margin-bottom:6px;
 }
 
 .grid-subtitle{
@@ -126,11 +112,8 @@ body{
 .sort-row{
     display:flex;
     justify-content:flex-end;
-    align-items:center;
     margin-bottom:20px;
     gap:8px;
-    font-size:13px;
-    color:var(--muted);
 }
 
 .sort-row select{
@@ -139,44 +122,25 @@ body{
     border-radius:999px;
     color:#f9fafb;
     border:1px solid #111827;
-    font-size:13px;
-    outline:none;
 }
 
 /* PRODUCT GRID */
+.grid{flex:1;}
 .products{
     display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:24px;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
 }
 
-/* PRODUCT CARDS */
+
+
+/* CARD */
 .card{
     background:radial-gradient(circle at top left,#141827,#050712);
     padding:14px;
     border-radius:var(--radius-lg);
-    transition:0.25s ease;
-    box-shadow:0 18px 40px rgba(0,0,0,0.85);
+    box-shadow:0 18px 40px rgba(0,0,0,0.8);
     border:1px solid #111827;
-    position:relative;
-    overflow:hidden;
-}
-
-.card::before{
-    content:"";
-    position:absolute;
-    inset:-40%;
-    background:radial-gradient(circle at top,#f3c46b22,transparent 55%);
-    opacity:0;
-    transition:opacity .25s ease;
-}
-
-.card:hover::before{ opacity:1; }
-
-.card:hover{
-    transform:translateY(-6px);
-    box-shadow:0 26px 60px rgba(0,0,0,0.95);
-    border-color:#f3c46b55;
 }
 
 .card img{
@@ -184,227 +148,163 @@ body{
     height:320px;
     object-fit:cover;
     border-radius:14px;
-    /* object-fit: contain; */
-    padding: 0%;
+    transition:0.3s;
 }
 
-.card-name{
-    font-size:15px;
-    margin-top:10px;
-    font-weight:500;
+/* Hover zoom */
+.card:hover img{
+    transform:scale(1.05);
 }
 
-.card-price{
-    font-size:14px;
-    opacity:0.85;
-    margin-top:2px;
-}
+.card-name{margin-top:10px;}
+.card-price{opacity:0.85;}
 
-/* VIEW BUTTON */
+/* BUTTON */
 .view-btn{
     margin-top:10px;
     background:var(--accent);
     border:none;
-    padding:9px 14px;
+    padding:9px;
     border-radius:999px;
-    cursor:pointer;
-    color:#111827;
     width:100%;
-    font-size:14px;
-    font-weight:600;
-    letter-spacing:.03em;
-    transition:.18s ease;
-    box-shadow:0 10px 26px rgba(0,0,0,0.75);
+    cursor:pointer;
 }
 
 .view-btn:hover{
     background:var(--accent-soft);
-    transform:translateY(-1px);
 }
 
-/* Responsive */
-@media (max-width:1024px){
-    .container{flex-direction:column;}
-    .sidebar{width:100%;position:static;}
-    .products{grid-template-columns:repeat(2,1fr);}
+/* MODAL */
+#imageModal{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.9);
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
 }
-@media (max-width:640px){
-    .container{padding:20px;}
-    .products{grid-template-columns:1fr;}
+
+#imageModal img{
+    max-width:85%;
+    max-height:85%;
+    border-radius:16px;
+}
+
+.close{
+    position:absolute;
+    top:20px;
+    right:30px;
+    font-size:30px;
+    color:white;
+    cursor:pointer;
 }
 </style>
 </head>
+
 <body>
-  <a href="shop.html" style="
-  position: fixed;
-  top: 35px;
-  left: 30px;
-  padding: 8px 16px;
-  border-radius: 999px;
-  background:#050712;
-  color:#f9fafb;
-  text-decoration:none;
-  font-size:13px;
-  border:1px solid #374151;
-">
-  ← Back to Home
+<a href="shop.html" style="position: fixed; top: 35px; left: 30px; padding: 8px 16px; border-radius: 999px; background:#050712; color:#f9fafb; text-decoration:none; font-size:13px; border:1px solid #374151;">
+← Back to Home
 </a>
 
 <div class="container">
 
-    <!-- SIDEBAR -->
-    <div class="sidebar">
-        <h2>FILTERS</h2>
+<!-- SIDEBAR -->
+<div class="sidebar">
+<h2>FILTERS</h2>
 
-        <div class="filter-section">
-            <div class="filter-title">SIZE</div>
-            <label><input type="checkbox"> XS</label>
-            <label><input type="checkbox"> S</label>
-            <label><input type="checkbox"> M</label>
-            <label><input type="checkbox"> L</label>
-            <label><input type="checkbox"> XL</label>
-        </div>
+<div class="filter-section">
+<div class="filter-title">SIZE</div>
+<label><input type="checkbox"> XS</label>
+<label><input type="checkbox"> S</label>
+<label><input type="checkbox"> M</label>
+<label><input type="checkbox"> L</label>
+<label><input type="checkbox"> XL</label>
+</div>
 
-        <div class="filter-section">
-            <div class="filter-title">COLOR</div>
-            <label><input type="checkbox"> Black</label>
-            <label><input type="checkbox"> Brown</label>
-            <label><input type="checkbox"> Beige</label>
-            <label><input type="checkbox"> Navy Blue</label>
-            <label><input type="checkbox"> Olive</label>
-        </div>
+<div class="filter-section">
+<div class="filter-title">COLOR</div>
+<label><input type="checkbox"> Black</label>
+<label><input type="checkbox"> Red</label>
+<label><input type="checkbox"> White</label>
+<label><input type="checkbox"> Beige</label>
+<label><input type="checkbox"> Pink</label>
+</div>
 
-        <div class="filter-section">
-            <div class="filter-title">PRICE</div>
-            <label><input type="checkbox"> ₹1499 – ₹1999</label>
-            <label><input type="checkbox"> ₹1999 – ₹2499</label>
-            <label><input type="checkbox"> ₹2499 – ₹2999</label>
-        </div>
-    </div>
+<div class="filter-section">
+<div class="filter-title">PRICE</div>
+<label><input type="checkbox"> ₹799 – ₹1199</label>
+<label><input type="checkbox"> ₹1199 – ₹1599</label>
+<label><input type="checkbox"> ₹1599 – ₹1999</label>
+</div>
+</div>
 
-    <!-- RIGHT GRID -->
-    <div class="grid">
+<!-- PRODUCTS -->
+<div class="grid">
 
-        <h1 class="grid-title">JACKETS & COATS</h1>
-        <p class="grid-subtitle">Layer-ready outerwear for winter chills, runway fits and late-night plans.</p>
+<h1 class="grid-title">DRESSES COLLECTION</h1>
+<p class="grid-subtitle">Curated mix of men’s & women’s occasion wear – sorted by comfort, fit & vibe.</p>
 
-        <div class="sort-row">
-            <span>Sort:</span>
-            <select id="sortSelect" onchange="sortProducts()">
-                <option value="">Recommended</option>
-                <option value="low">Price: Low → High</option>
-                <option value="high">Price: High → Low</option>
-            </select>
-        </div>
+<div class="sort-row">
+<span>Sort:</span>
+<select id="sortSelect" onchange="sortProducts()">
+<option value="">Recommended</option>
+<option value="low">Price: Low → High</option>
+<option value="high">Price: High → Low</option>
+</select>
+</div>
 
-        <div id="productList" class="products">
+<div class="container">
+<div class="grid">
+<div class="products">
 
-            <!-- 12 Jackets/Coats Cards -->
-            <div class="card" data-price="2499">
-                <img src="https://image2url.com/images/1765214385737-73328c4b-4e67-400e-84b1-b97d0e7d7437.jpg">
-                <div class="card-name">Oversized Bomber Jacket (Men)</div>
-                <div class="card-price">₹2099</div>
-                <button class="view-btn">View</button>
-            </div>
+<!-- 🔥 ALL 12 IMAGES -->
+<div class="card"><img src="https://image2url.com/images/1765214385737-73328c4b-4e67-400e-84b1-b97d0e7d7437.jpg"><button class="view-btn" onclick="openModal(this)">View</button></div>
 
-            <div class="card" data-price="1999">
-                <img src="https://image2url.com/images/1765214453190-17e98ed2-5c96-48a4-8b1a-49e3a6934c23.jpg">
-                <div class="card-name">Teddy Fur Coat (Women)</div>
-                <div class="card-price">₹1999</div>
-                <button class="view-btn">View</button>
-            </div>
+<div class="card"><img src="https://image2url.com/images/1765214453190-17e98ed2-5c96-48a4-8b1a-49e3a6934c23.jpg"><button class="view-btn" onclick="openModal(this)">View</button></div>
 
-            <div class="card" data-price="2299">
-                <img src="https://image2url.com/images/1765214545593-c22d3bb7-1d34-41a3-a371-00ccc522203a.jpg">
-                <div class="card-name">Puffer Jacket (Men)</div>
-                <div class="card-price">₹2199</div>
-                <button class="view-btn">View</button>
-            </div>
+<div class="card"><img src="https://image2url.com/images/1765214545593-c22d3bb7-1d34-41a3-a371-00ccc522203a.jpg"><button class="view-btn" onclick="openModal(this)">View</button></div>
 
-            <div class="card" data-price="2599">
-                <img src="https://image2url.com/images/1765214605774-4d425bcd-8cbb-4c1a-9ef2-577406f4011f.jpg">
-                <div class="card-name">Long Woolen Coat (Women)</div>
-                <div class="card-price">₹2300</div>
-                <button class="view-btn">View</button>
-            </div>
+<div class="card"><img src="https://image2url.com/images/1765214605774-4d425bcd-8cbb-4c1a-9ef2-577406f4011f.jpg"><button class="view-btn" onclick="openModal(this)">View</button></div>
 
-            <div class="card" data-price="1899">
-                <img src="https://image2url.com/images/1765214691076-eebe7480-d25b-49cd-97dc-254d7ccc5c8c.jpg">
-                <div class="card-name">Corduroy Jacket (Men)</div>
-                <div class="card-price">₹1499</div>
-                <button class="view-btn">View</button>
-            </div>
+<div class="card"><img src="https://image2url.com/images/1765214691076-eebe7480-d25b-49cd-97dc-254d7ccc5c8c.jpg"><button class="view-btn" onclick="openModal(this)">View</button></div>
 
-            <div class="card" data-price="2799">
-                <img src="https://image2url.com/images/1765214757833-481807ef-a4b3-4754-82ca-402fb947535d.jpg">
-                <div class="card-name">Trench Coat (Women)</div>
-                <div class="card-price">₹2099</div>
-                <button class="view-btn">View</button>
-            </div>
+<div class="card"><img src="https://image2url.com/images/1765214757833-481807ef-a4b3-4754-82ca-402fb947535d.jpg"><button class="view-btn" onclick="openModal(this)">View</button></div>
 
-            <div class="card" data-price="2499">
-                <img src="https://image2url.com/images/1765214937881-f0b1142d-6a11-4bed-ba05-50717b8ffac6.jpg">
-                <div class="card-name">Leather Biker Jacket (Men)</div>
-                <div class="card-price">₹2499</div>
-                <button class="view-btn">View</button>
-            </div>
+<div class="card"><img src="https://image2url.com/images/1765214937881-f0b1142d-6a11-4bed-ba05-50717b8ffac6.jpg"><button class="view-btn" onclick="openModal(this)">View</button></div>
 
-            <div class="card" data-price="1699">
-                <img src="https://image2url.com/images/1765214989579-a631bfd6-0441-48c0-b908-0ab680a40f00.jpg">
-                <div class="card-name">Cropped Denim Jacket (Women)</div>
-                <div class="card-price">₹1699</div>
-                <button class="view-btn">View</button>
-            </div>
+<div class="card"><img src="https://image2url.com/images/1765214989579-a631bfd6-0441-48c0-b908-0ab680a40f00.jpg"><button class="view-btn" onclick="openModal(this)">View</button></div>
 
-            <div class="card" data-price="2199">
-                <img src="https://image2url.com/images/1765215058722-b1d70015-a9b6-4cf6-92c8-867bbc9db633.jpg">
-                <div class="card-name">Windbreaker Jacket (Men)</div>
-                <div class="card-price">₹2199</div>
-                <button class="view-btn">View</button>
-            </div>
+<div class="card"><img src="https://image2url.com/images/1765215058722-b1d70015-a9b6-4cf6-92c8-867bbc9db633.jpg"><button class="view-btn" onclick="openModal(this)">View</button></div>
 
-            <div class="card" data-price="2399">
-                <img src="https://image2url.com/images/1765215186527-f853dbb3-b32a-418a-8db9-2de4ab66a452.jpg">
-                <div class="card-name">Faux Fur Coat (Women)</div>
-                <div class="card-price">₹2000</div>
-                <button class="view-btn">View</button>
-            </div>
+<div class="card"><img src="https://image2url.com/images/1765215186527-f853dbb3-b32a-418a-8db9-2de4ab66a452.jpg"><button class="view-btn" onclick="openModal(this)">View</button></div>
 
-            <div class="card" data-price="1999">
-                <img src="https://image2url.com/images/1765215107495-1df8a7d4-33e4-408d-a58a-6a5f6e68d9a1.jpg">
-                <div class="card-name">Utility Cargo Jacket (Men)</div>
-                <div class="card-price">₹1799</div>
-                <button class="view-btn">View</button>
-            </div>
+<div class="card"><img src="https://image2url.com/images/1765215107495-1df8a7d4-33e4-408d-a58a-6a5f6e68d9a1.jpg"><button class="view-btn" onclick="openModal(this)">View</button></div>
 
-            <div class="card" data-price="2899">
-                <img src="https://image2url.com/images/1765215331221-13ebc32b-200d-4745-9918-bcdccc0495d7.jpg">
-                <div class="card-name">Formal Long Coat (Women)</div>
-                <div class="card-price">₹2200</div>
-                <button class="view-btn">View</button>
-            </div>
+<div class="card"><img src="https://image2url.com/images/1765215331221-13ebc32b-200d-4745-9918-bcdccc0495d7.jpg"><button class="view-btn" onclick="openModal(this)">View</button></div>
 
-        </div>
-    </div>
+</div>
+</div>
+</div>
 
+<!-- MODAL -->
+<div id="modal" onclick="closeModal()">
+<span class="close" onclick="event.stopPropagation(); closeModal()">✖</span>
+<img id="modalImg">
 </div>
 
 <script>
-function sortProducts(){
-    let option = document.getElementById("sortSelect").value;
-    let products = [...document.querySelectorAll(".card")];
-    let list = document.getElementById("productList");
+function openModal(btn){
+    let img = btn.parentElement.querySelector("img").src;
+    document.getElementById("modalImg").src = img;
+    document.getElementById("modal").style.display = "flex";
+}
 
-    list.innerHTML = "";
-
-    if(option === "low"){
-        products.sort((a,b)=>a.dataset.price - b.dataset.price);
-    } 
-    else if(option === "high"){
-        products.sort((a,b)=>b.dataset.price - a.dataset.price);
-    }
-
-    products.forEach(p => list.appendChild(p));
+function closeModal(){
+    document.getElementById("modal").style.display = "none";
 }
 </script>
 
