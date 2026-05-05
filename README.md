@@ -37,6 +37,7 @@ VS Code
 
 
 📁 **Project** **Structure**
+
 Trendevo/
 │── static/              # CSS, JS, Images  
 │── templates/           # HTML pages  
