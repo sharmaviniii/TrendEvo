@@ -264,8 +264,7 @@ google = oauth.register(
 )
 
 app.config["SECRET_KEY"] = "change-this-secret"  # change for production (use env var)
-app.config["MONGO_URI"] = "mongodb+srv://vanshika1310sharma_db_user:myetcFSTQzOzBLmq@cluster0.4r2c82p.mongodb.net/trendevo"
-
+app.config["MONGO_URL"] = os.getenv("MONGO_URL")
 # Session cookie (dev-friendly settings — tighten for prod)
 app.config["SESSION_COOKIE_HTTPONLY"] = True
 app.config["SESSION_COOKIE_SAMESITE"] = "None"  # allows cross-site in dev
@@ -389,12 +388,39 @@ def shop_page():
 def serve_images(filename):
     return send_from_directory(FRONTEND_IMAGES_DIR, filename)
 
+@app.route("/dresses")
+def dresses():
+    return send_from_directory(FRONTEND_DIR, "dresses.html")
+
+@app.route("/denims")
+def denims():
+    return send_from_directory(FRONTEND_DIR, "denims.html")
+
+@app.route("/jackets")
+def product():
+    return send_from_directory(FRONTEND_DIR, "jackets.html")
+
+@app.route("/knitwear")
+def dresses():
+    return send_from_directory(FRONTEND_DIR, "knitwear.html")
+
+@app.route("/thrift")
+def denims():
+    return send_from_directory(FRONTEND_DIR, "thrift.html")
+
+@app.route("/product")
+def product():
+    return send_from_directory(FRONTEND_DIR, "product.html")
+
+@app.route("/upperwear")
+def product():
+    return send_from_directory(FRONTEND_DIR, "upperwear.html")
 # ---------------------
 # Simple index / health
 # ---------------------
 @app.route("/", methods=["GET"])
 def home():
-    return "Backend is running!"
+    return send_from_directory(FRONTEND_DIR, "shop.html")
 
 @app.route("/api/health", methods=["GET"])
 def health():
