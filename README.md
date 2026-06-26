@@ -1,5 +1,5 @@
 **🚀 TrendÉvo**
-AI-Powered Fashion Trend Prediction & Thrift Marketplace 
+AI-Powered Fashion Trend Prediction & Thrift Marketplace <br>
 Link : https://trendevo.onrender.com/static/index.html
 
 **📌 Overview**
@@ -17,43 +17,29 @@ Additionally, the platform includes an AI chatbot assistant that helps users wit
 🌱 Sustainability-focused fashion ecosystem
 
 
-**🛠️ Tech Stack**
-**Frontend**
-HTML
-CSS
-JavaScript
-Bootstrap / React
-**Backend**
-Flask (Python) / Node.js
-**Database**
-SQLite / MySQL
-**AI / ML Models**
-Prophet (Time Series Forecasting)
-LSTM (Deep Learning)
-CNN / CLIP (Image-based trend analysis)
-**Tools & Deployment**
-Git & GitHub
-Render
-VS Code
-
-
-📁 **Project** **Structure**
-
-Trendevo/
-│── static/              # CSS, JS, Images  
-│── templates/           # HTML pages  
-│── models/              # ML models  
-│── chatbot/             # AI chatbot logic  
-│── database/            # DB files  
-│── app.py               # Main backend file  
-│── requirements.txt     # Dependencies  
-│── README.md            # Project documentation  
-
+**🛠️ Tech Stack** <br>
+**Frontend** <br>
+HTML <br>
+CSS <br>
+JavaScript <br>
+Bootstrap / React <br>
+**Backend** <br>
+Flask (Python) / Node.js <br>
+**Database** <br>
+SQLite / MySQL <br>
+**AI / ML Models** <br>
+Prophet (Time Series Forecasting) <br>
+LSTM (Deep Learning) <br>
+CNN / CLIP (Image-based trend analysis) <br>
+**Tools & Deployment** <br>
+Git & GitHub <br>
+Render <br>
+VS Code <br>
 
 🔮 **Future** **Scope**
-Advanced deep learning models (Transformers)
-Virtual try-on features
-Real-time outfit preview
-Cloud deployment (AWS/GCP/Azure)
-Multilingual chatbot support
-Sustainability metrics (carbon footprint tracking)
+Advanced deep learning models (Transformers) <br>
+Virtual try-on features <br>
+Real-time outfit preview <br>
+Cloud deployment (AWS/GCP/Azure) <br>
+Multilingual chatbot support <br>
+Sustainability metrics (carbon footprint tracking) <br>
